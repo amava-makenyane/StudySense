@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudySense | AI study summaries &amp; marking</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<meta name="description" content="StudySense turns your notes into summaries, quizzes and mock exams, and helps teachers mark papers in minutes.">
+<meta name="theme-color" content="#0A1024">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-70 -60 523 450'%3E%3Crect x='-70' y='-60' width='523' height='450' rx='100' fill='white'/%3E%3Cpath d='M0 142L191 235 383 142V237L191 330 0 237z' fill='%230A1024'/%3E%3Cpath d='M64.4 137A127 127 0 1 1 317.6 137L191 199z' fill='%2393DD0C'/%3E%3C/svg%3E">
+<style>:root{--bg:#0A1024;--bg2:#0C1530;--sf:#111B38;--ink:#EAF0FF;--mute:#93A0C0;--line:#223058;--ac:#93DD0C;--ac2:#A8EC2B;--ok:#34D399;--bad:#F87171;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#F4F7FF;--bg2:#E9EFFD;--sf:#fff;--ink:#0B1430;--mute:#53607F;--line:#D5DDF0;--ac:#93DD0C;--ac2:#3F7A00;--ok:#059669;--bad:#DC2626}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--ac2);outline-offset:2px}
+a{color:var(--ac2)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:14px;padding:12px 0;flex-wrap:wrap}
+.logo{font-weight:800;font-size:20px;display:flex;align-items:center;gap:8px;background:none;border:0}
+.logo i{width:30px;height:26px;display:inline-block}
+nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+nav button{background:none;border:0;color:var(--mute);padding:8px 12px;border-radius:8px}
+nav button[aria-current=true],nav button:hover{color:var(--ink);background:var(--sf)}
+.btn{border:0;border-radius:10px;padding:11px 20px;font-weight:700;background:var(--ac);color:#0A1024}
+.btn.ghost{background:none;border:1.5px solid var(--line);color:var(--ink)}
+.btn.sm{padding:8px 14px}
+.eyebrow{display:inline-block;font-size:14px;color:var(--ac2);border:1px solid var(--line);padding:4px 12px;border-radius:999px;margin-bottom:16px}
+h1{font-size:clamp(34px,6.4vw,64px);line-height:1.04;margin:0 0 16px;font-weight:800}
+h2{font-size:clamp(26px,4vw,38px);margin:0 0 10px}
+.lead{color:var(--mute);font-size:18px;max-width:58ch}
+.view{display:none;padding:34px 0 70px}.view.on{display:block}
+.hero{position:relative;overflow:hidden;padding:60px 0 50px}
+.hero svg{position:absolute;right:-40px;top:0;width:620px;max-width:90%;opacity:.45;z-index:-1}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 80% 10%,color-mix(in srgb,var(--ac) 28%,transparent),transparent 55%)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+.stat{border-left:2px solid var(--ac);padding-left:12px}.stat b{font:800 26px Sora}.stat span{display:block;color:var(--mute);font-size:14px}
+.ticker{overflow:hidden;border-block:1px solid var(--line);background:var(--bg2);padding:12px 0;white-space:nowrap}
+.ticker div{display:inline-block;animation:tick 28s linear infinite;color:var(--mute)}
+.ticker span{margin:0 22px}
+@keyframes tick{to{transform:translateX(-50%)}}
+section.blk{padding:60px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.card{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{margin:6px 0 6px;font-size:19px}.card p{margin:0;color:var(--mute)}
+.num{color:var(--ac2);font:700 14px Sora}
+.price .amt{font:800 38px Sora}.price ul{list-style:none;padding:0;margin:14px 0;display:grid;gap:6px;color:var(--mute)}
+.price li::before{content:"\2713  ";color:var(--ok);font-weight:700}
+.price.pop{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.tag{font-size:12px;background:var(--ac);color:#04101f;padding:2px 10px;border-radius:999px;font-weight:700}
+.chat{display:flex;flex-direction:column;height:min(70vh,640px);background:var(--sf);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.chat-top{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);color:var(--mute);font-size:14px;flex-wrap:wrap}
+.msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.m{max-width:min(640px,92%);padding:12px 16px;border-radius:14px}
+.m.u{align-self:flex-end;background:var(--ac);color:#04101f;white-space:pre-wrap}
+.m.a{align-self:flex-start;background:var(--bg2);border:1px solid var(--line)}
+.m h4{margin:10px 0 4px;font-family:Sora}.m ul{margin:4px 0;padding-left:20px}
+.chips span{display:inline-block;background:var(--sf);border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin:2px 4px 2px 0;font-size:13px}
+.comp{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);align-items:flex-end}
+.comp textarea{flex:1;resize:none;min-height:46px;max-height:140px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+label{display:block;font-size:14px;color:var(--mute);margin:12px 0 4px}
+input,select,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.auth{max-width:420px;margin:0 auto}
+.gbtn{width:100%;display:flex;gap:10px;justify-content:center;align-items:center;background:#fff;color:#1f1f1f;border:0;border-radius:10px;padding:11px;font-weight:700}
+.or{text-align:center;color:var(--mute);margin:14px 0;font-size:14px}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pick button{text-align:left;background:var(--sf);border:1.5px solid var(--line);border-radius:14px;padding:22px}
+.pick button:hover,.pick button[aria-pressed=true]{border-color:var(--ac)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.kp .card b{font:800 28px Sora;display:block}
+.note{color:var(--mute);font-size:14px}
+.res{display:grid;grid-template-columns:28px 1fr auto;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.ok{color:var(--ok);font-weight:800}.no{color:var(--bad);font-weight:800}
+.rooms{display:grid;grid-template-columns:320px 1fr;gap:16px}
+.fl{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.fl button{background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--mute)}
+.fl button[aria-pressed=true]{background:var(--ac);color:#04101f;border-color:var(--ac)}
+.rl{display:grid;gap:8px;max-height:480px;overflow:auto}
+.rl button{text-align:left;background:var(--sf);border:1px solid var(--line);border-radius:12px;padding:12px}
+.rl button[aria-current=true]{border-color:var(--ac2)}
+.rl small{display:block;color:var(--mute)}
+.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);display:none;place-items:center;padding:20px}
+.modal.on{display:grid}.modal .card{max-width:440px;width:100%}
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:34px 0 40px;color:var(--mute);font-size:15px}
+.fgrid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ac);color:#04101f;font-weight:700;padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}.toast.on{opacity:1}
+@media(max-width:800px){.grid,.two,.pick,.rooms,.kp{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}nav{margin-left:0;width:100%}}
+@media(prefers-reduced-motion:reduce){.ticker div{animation:none}}
+.modebar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.card .modebar{padding:0 0 10px;border:0}
+.modebar button{background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--mute)}
+.modebar button[aria-pressed=true]{background:var(--ac);color:#04101f;border-color:var(--ac)}
+.fchips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 14px 0}.fchips:empty{display:none}.card .fchips{padding:0 0 8px}
+.fchips span{font-size:13px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:2px 10px}
+.slide{border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:10px 0;background:var(--sf)}
+.art{margin-top:14px}.cmt{border-left:2px solid var(--ac);padding:4px 10px;margin:8px 0;color:var(--mute)}.cmt b{color:var(--ink)}
+.cm{display:flex;gap:8px;margin-top:10px}.m .tag{display:inline-block}
+.dz{border:2px dashed var(--line);border-radius:16px;padding:26px 20px;background:color-mix(in srgb,var(--sf) 80%,transparent);max-width:640px;cursor:pointer;margin:22px 0 10px}
+.dz.over,.dz:hover{border-color:var(--ac2)}.dz b{font-size:18px}.dz small{display:block;color:var(--mute);margin-top:4px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.opt{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:6px 14px}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 20%,transparent)}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 20%,transparent)}
+details.faq{border-top:1px solid var(--line);padding:12px 0}details.faq summary{cursor:pointer;font-weight:700}details.faq p{color:var(--mute);margin:8px 0 0;max-width:70ch}
+.fcols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}.fcols b{display:block;color:var(--ink);margin-bottom:6px}.fcols p{margin:0;max-width:34ch}
+.lnk{display:block;background:none;border:0;padding:3px 0;color:var(--mute);text-align:left}.lnk:hover{color:var(--ac2)}
+.fbot{border-top:1px solid var(--line);margin-top:24px;padding-top:18px}
+@media(max-width:800px){.fcols{grid-template-columns:1fr 1fr}}
+
+/* ===== v2 additions ===== */
+:root[data-theme="light"]{--bg:#F4F7FF;--bg2:#E9EFFD;--sf:#fff;--ink:#0B1430;--mute:#53607F;--line:#D5DDF0;--ac:#93DD0C;--ac2:#3F7A00;--ok:#059669;--bad:#DC2626}
+.over{outline:2px dashed var(--ac2);outline-offset:3px}
+.dz.small{padding:14px;text-align:center;margin:0;max-width:none;font-size:14px;color:var(--mute)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.acts{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.acts button{background:none;border:1px solid var(--line);border-radius:8px;padding:2px 10px;color:var(--mute);font-size:13px}
+.acts button:hover{color:var(--ink);border-color:var(--ac2)}
+.pl{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;margin-top:6px;font-size:14px}
+.pl button{background:none;border:0;color:var(--mute);font-size:18px;line-height:1}
+.tbl{overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:12px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px}
+.tbl th,.tbl td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+.tbl th:first-child,.tbl td:first-child{text-align:left;position:sticky;left:0;background:var(--sf)}
+.tbl thead th{background:var(--bg2)}
+.tbl td.c{cursor:pointer;user-select:none;font-weight:700}
+.tbl td.f{color:var(--ok)}.tbl td.h{color:#F59E0B}.tbl td.z{color:var(--bad)}
+.tbl tr.sum td{background:var(--bg2);font-weight:700}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.sheet-head .row{margin:0}
+.slot{height:6px;background:var(--line);border-radius:4px;overflow:hidden;max-width:260px;margin:6px 0 14px}
+.slot i{display:block;height:100%;background:var(--ac2)}
+.cv{position:relative;height:250px}
+.charts{margin-top:14px}
+.sfeed .card h3{margin:2px 0 4px}
+.room-tag{display:inline-block;font-size:12px;color:var(--ac2);border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-bottom:6px}
+@media(max-width:800px){.sheet-head{align-items:flex-start}}
+
+/* ===== v3: logo, landing page, teacher dashboard ===== */
+.logo i,.mark{background:var(--logo) center/contain no-repeat;border-radius:0}
+.mark{display:inline-block;width:40px;height:34px;flex:none}
+.g{background:linear-gradient(90deg,#3F9A00,#93DD0C);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* landing page */
+body.on-home{background:linear-gradient(135deg,#0A1024 0%,#14305C 55%,#93DD0C 125%) fixed}
+body.on-home header{display:none}
+body.on-home footer{background:#0D1B33;border-color:#243656}
+#home{padding:26px 16px 0}
+.lcard{--bg:#F4F8EC;--bg2:#E9F2D6;--sf:#fff;--ink:#0A1024;--mute:#5A6479;--line:#DDE5CC;--ac:#93DD0C;--ac2:#3F7A00;--ok:#059669;--bad:#DC2626;--logo:var(--logo-dark);background:#F4F8EC;color:var(--ink);max-width:1180px;margin:0 auto;border-radius:36px;overflow:hidden;box-shadow:0 30px 80px rgba(5,10,30,.4)}
+.lcard .btn{color:#0A1024;background:#93DD0C;box-shadow:0 6px 18px rgba(147,221,12,.35)}
+.lcard .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.lcard :focus-visible{outline-color:#0A1024}
+.lnav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 28px;flex-wrap:wrap}
+.lnav nav{display:flex;gap:26px;flex-wrap:wrap;margin:0}
+.lnav nav button{background:none;border:0;color:var(--ink);font-weight:500;padding:6px 0}
+.lnav nav button:hover{color:var(--ac2)}
+.lnav .r{display:flex;gap:8px}
+.rbtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--ink)}
+.lhero{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;padding:24px 44px 44px}
+.lhero h1{font-size:clamp(40px,6vw,66px);line-height:1.02;margin:0 0 18px}
+.lhero .lead{font-size:16px}
+.dots{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin-top:6px}
+.dots span::before{content:"\2022";color:var(--ac2);margin-right:6px}
+.go{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(10,16,36,.7);margin-right:10px;font-size:12px;vertical-align:middle}
+.promo{background:#fff;text-align:center;padding:16px;font-size:14px;border-top:1px solid var(--line)}
+.promo button{background:none;border:0;color:var(--ac2);font-weight:700;margin-left:14px}
+.llogos{background:#fff;display:flex;justify-content:space-around;gap:16px;flex-wrap:wrap;padding:26px 30px 10px;font:700 19px Sora}
+.lnote{background:#fff;text-align:center;font-size:12px;color:var(--mute);padding:0 20px 22px}
+.lcard>.wrap{background:#fff;max-width:none;padding:0 44px 50px}
+.lvis{position:relative;height:440px}
+.phone{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:236px;background:#0D0D14;border-radius:28px;padding:18px 18px 0;color:#fff;box-shadow:0 24px 50px rgba(0,0,0,.28);overflow:hidden}
+.phone h4{margin:0 0 12px;font:700 17px Sora}
+.wave{display:flex;align-items:center;gap:2px;height:60px}
+.wave i{flex:1;background:#6c6c78;border-radius:2px}.wave i.hot{background:#93DD0C}
+.timer{display:flex;justify-content:space-between;background:#1d1d28;border-radius:10px;padding:8px 12px;margin:12px 0 0;font-size:13px;color:#cfcfe0}
+.pbox{background:#fff;color:#14121F;margin:12px -18px 0;padding:46px 18px 16px;font-size:13px;min-height:150px}
+.pbox p{margin:0 0 8px}.pbox small{color:#8a8696}
+.float{position:absolute;left:50%;top:222px;transform:translateX(-30%);background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 14px 34px rgba(0,0,0,.16);font-size:14px;width:240px;z-index:2}
+.float .who{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px}
+.float .av{width:30px;height:30px;margin:0;font-size:13px}
+.chip2{background:#93DD0C;color:#0A1024;border-radius:6px;padding:1px 8px;font-size:11px}
+.fade{opacity:.4}
+.tile{position:absolute;width:96px;height:72px;border-radius:16px;display:grid;place-items:center;color:#fff;font:700 26px Sora;box-shadow:0 10px 24px rgba(0,0,0,.16)}
+.tile small{display:block;font:500 11px DM Sans,sans-serif;text-align:center;opacity:.9}
+.t1{left:0;top:30px;background:linear-gradient(135deg,#0A1024,#1E3A6E)}.t2{right:0;top:36px;background:linear-gradient(135deg,#93DD0C,#B6F23A);color:#0A1024}
+.t3{left:0;bottom:36px;background:linear-gradient(135deg,#0EA5A4,#3B82F6)}.t4{right:0;bottom:36px;background:linear-gradient(135deg,#475569,#94A3B8)}
+.badge2{position:absolute;right:26px;top:-6px;background:#fff;border-radius:12px;padding:6px 12px;font-size:12px;box-shadow:0 8px 20px rgba(0,0,0,.12);z-index:3}
+@media(max-width:860px){.lhero{grid-template-columns:1fr;padding:18px 22px 30px}.tile{display:none}.lcard>.wrap{padding:0 22px 40px}.lnav nav{display:none}.lvis{height:420px}}
+
+/* teacher dashboard */
+body.on-dash header{display:none}
+#teacher{padding:0;position:relative}
+#teacher::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.1;background:var(--logo) center/min(72vmin,640px) no-repeat}
+.dash{display:grid;grid-template-columns:220px minmax(0,1fr) 290px;max-width:1380px;margin:0 auto;min-height:100vh;position:relative;z-index:1}
+.dash .card{background:color-mix(in srgb,var(--sf) 88%,transparent)}
+.side{padding:22px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.slogo{display:flex;align-items:center;gap:10px;font:800 20px Sora;padding:0 8px}
+.side nav{display:grid;gap:4px;margin:22px 0;width:100%}
+.side nav button{display:flex;gap:10px;align-items:center;text-align:left;background:none;border:0;padding:10px 12px;border-radius:10px;color:var(--mute)}
+.side nav button:hover,.side nav button.on{background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ink)}
+.upg{margin-top:auto;text-align:center;font-size:14px;color:var(--mute);border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--sf)}
+.dmain{padding:22px;min-width:0}
+.right{padding:22px 18px;border-left:1px solid var(--line)}
+.dbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.dbar h2{margin:0}.dtools{display:flex;gap:8px}.dtools input{width:220px}
+.banner{display:flex;justify-content:space-between;align-items:center;gap:16px;background:color-mix(in srgb,var(--ac) 14%,var(--sf));border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}
+.banner h3{margin:0 0 6px;font-size:22px}.banner p{margin:0 0 12px;max-width:52ch;color:var(--mute)}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.rrow{display:grid;grid-template-columns:10px 1fr 80px 44px;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.rrow>i{width:10px;height:10px;border-radius:50%}.rrow small{display:block;color:var(--mute)}
+.pbar{height:4px;background:var(--line);border-radius:3px}.pbar i{display:block;height:100%;border-radius:3px}
+.avs{display:flex;gap:14px;flex-wrap:wrap}.avs>div{text-align:center;font-size:13px;color:var(--mute)}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#0A1024;font-weight:700;margin:0 auto 4px}
+.av.big{width:76px;height:76px;font-size:26px;background:#93DD0C}
+.prof{text-align:center;margin-bottom:18px}.prof b{display:block}
+.right h4{margin:18px 0 6px;font:700 16px Sora}
+.pi{display:grid;grid-template-columns:36px 1fr;gap:10px;padding:8px 0;text-align:left;background:none;border:0;width:100%;color:var(--ink)}
+.pi i{width:36px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--bad) 14%,transparent);display:grid;place-items:center;font-style:normal}
+.bal{margin:16px 0;border-radius:16px;padding:18px;color:#fff;background:linear-gradient(135deg,#0A1024,#17356A)}
+.bal small{letter-spacing:.08em;opacity:.85}.bal b{display:block;font:800 34px Sora;color:#93DD0C}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin:3px 4px 3px 0;font-size:13px}
+.badge.on{background:var(--ac);color:#04101f;border-color:var(--ac)}.badge.off{opacity:.55}
+.sec{margin:28px 0 10px;font:700 22px Sora}
+@media(max-width:1100px){.dash{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;border-right:0;border-bottom:1px solid var(--line)}.side nav{display:flex;flex-wrap:wrap;margin:8px 0;width:auto}.upg{display:none}.right{border-left:0;border-top:1px solid var(--line)}.dgrid{grid-template-columns:1fr}}
+
+/* ===== v4: POPIA ===== */
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mute);margin:8px 0;cursor:pointer}
+.chk input{width:auto;margin-top:4px;flex:none}
+.lnk2{background:none;border:0;padding:0;color:var(--ac2);text-decoration:underline;font:inherit;cursor:pointer}
+.consent{border:1px solid var(--line);border-radius:12px;padding:6px 14px;margin:14px 0;background:var(--sf)}
+.legal{max-width:820px}
+.pol h3{margin:26px 0 6px;font:700 19px Sora}.pol p,.pol li{color:var(--mute);line-height:1.65}.pol ul{padding-left:20px}.pol b{color:var(--ink)}
+.devnote{border-color:var(--bad);margin-bottom:16px}
+code{background:var(--bg2);padding:1px 6px;border-radius:6px;font-size:.9em}
+.notice{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:760px;margin:0 auto;z-index:40;background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+
+/* ===== v5: brand (Study Sense lime and navy, NextWeb navy and silver) ===== */
+:root{--logo-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 383 330'%3E%3Cpath d='M0 142L191 235 383 142V237L191 330 0 237z' fill='%230A1024'/%3E%3Cpath d='M64.4 137A127 127 0 1 1 317.6 137L191 199z' fill='%2393DD0C'/%3E%3C/svg%3E");--logo-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 383 330'%3E%3Cpath d='M0 142L191 235 383 142V237L191 330 0 237z' fill='%23EAF0FF'/%3E%3Cpath d='M64.4 137A127 127 0 1 1 317.6 137L191 199z' fill='%2393DD0C'/%3E%3C/svg%3E");--logo:var(--logo-light)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--logo:var(--logo-dark)}}
+:root[data-theme="light"]{--logo:var(--logo-dark)}
+:root[data-theme="dark"]{--logo:var(--logo-light)}
+.logo,.slogo{font-family:Sora,system-ui,sans-serif;letter-spacing:-.01em}
+footer{background:#0D1B33;border-top:1px solid #243656;color:#B2B5BA;--ink:#E6E8EB;--mute:#B2B5BA;--ac2:#C9E96B;--line:#243656}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.fmeta{font-size:13px;color:#8E93A0;text-align:right}.fmeta a{color:#B2B5BA}
+.nw{display:flex;align-items:center;gap:14px;color:#B2B5BA;text-decoration:none}
+.nwm{width:54px;height:54px;flex:none}
+.nwt small{display:block;font-size:11px;letter-spacing:.08em;color:#8E93A0;margin-bottom:2px}
+.nwt b{display:block;font:600 21px "Cormorant Garamond",Georgia,serif;letter-spacing:.2em;color:#B2B5BA;line-height:1.1}
+.nwt em{display:block;font:500 11px "DM Sans",sans-serif;font-style:normal;letter-spacing:.55em;margin-top:4px;color:#B2B5BA}
+@media(max-width:700px){.fmeta{text-align:left}}
+</style>
+
+</head>
+<body>
+<header><div class="wrap bar">
+  <button class="logo" data-go="home"><i></i>Study Sense</button>
+  <nav aria-label="Main" id="nav">
+    <button data-go="home">Home</button><button data-go="guest">Try free</button><button data-go="rooms">Talk rooms</button><button data-go="pricing">Pricing</button><button data-go="dash">Dashboard</button>
+  </nav>
+  <button class="btn ghost sm" id="themeBtn" data-theme-toggle>Light mode</button><button class="btn sm" id="authBtn">Sign in</button>
+</div></header>
+
+<main>
+<!-- HOME -->
+<section class="view on" id="home">
+ <div class="lcard">
+  <div class="lnav">
+    <span class="slogo"><i class="mark"></i>Study Sense</span>
+    <nav aria-label="Home sections"><button data-scroll="how">How it works</button><button data-scroll="usecases">Use cases</button><button data-scroll="features">Features</button><button data-scroll="pricing-sec">Pricing</button><button data-scroll="faq-sec">FAQ</button></nav>
+    <div class="r"><button class="rbtn" data-go="signin" aria-label="Sign in"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5M15 12H3M15 4h4a2 2 0 012 2v12a2 2 0 01-2 2h-4"/></svg></button><button class="rbtn" data-go="profile" aria-label="Profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button></div>
+  </div>
+  <div class="lhero">
+    <div>
+      <h1><span class="g">AI notes</span><br>and marking,<br>made simple</h1>
+      <p class="lead">StudySense reads your slides, notes and papers, then builds summaries, quizzes and mock exams. Teachers get their marking done in minutes, not weekends.</p>
+      <div class="row"><button class="btn" data-go="guest"><span class="go">&rarr;</span>Start for free</button><button class="btn ghost" data-go="signin">Sign in</button></div>
+      <div class="dots"><span>5 free summaries</span><span>No credit card needed</span><span>Cancel anytime</span></div>
+    </div>
+    <div class="lvis" aria-hidden="true">
+      <div class="badge2">&#9733; Made in South Africa</div>
+      <div class="tile t1">T<small>Student</small></div><div class="tile t2">S<small>Teacher</small></div><div class="tile t3">N<small>Student</small></div><div class="tile t4">L<small>Lecturer</small></div>
+      <div class="phone"><h4>Photosynthesis notes</h4><div class="wave" id="wave"></div><div class="timer"><span>00:42</span><span>&#10022; Summarising&hellip;</span></div>
+        <div class="pbox"><p><b>Summary ready</b><br><small>04:34</small></p><p>The light stage makes ATP and NADPH. The Calvin cycle uses them to build glucose.</p><p><small>Next: quiz and mock exam</small></p></div></div>
+      <div class="float"><div class="who"><span class="av" style="background:#0A1024;color:#fff">T</span><b>Thandi</b><span class="chip2">Key point</span></div>RuBisCO fixes carbon dioxide in the stroma, <span class="fade">and</span></div>
+    </div>
+  </div>
+  <div class="promo">Study free with 5 summaries, then R50 a month for unlimited notes and marking.<button data-scroll="pricing-sec">See pricing</button></div>
+  <div class="llogos" aria-label="Made for students at"><span>UKZN</span><span>UCT</span><span>Wits</span><span>UNISA</span><span>Stellenbosch</span><span>IIE Rosebank</span></div>
+  <div class="lnote">Made for South African students. StudySense is not affiliated with or endorsed by any school, college or university.</div>
+  <div class="wrap">
+    <section class="blk" id="try" style="padding-bottom:0"><span class="eyebrow">Try it now</span><h2>Drop a file and see what happens</h2>
+      <div class="dz" id="dz" tabindex="0" role="button" aria-label="Upload files"><b>Drag and drop files here</b> or <u>choose files</u> from your device.<small>PDF, Word, PowerPoint, Excel, text files, even photos of your notes.</small><input type="file" id="hFile" hidden multiple></div>
+      <div class="modebar" style="border:0;padding:6px 0"></div></section>
+    <section class="blk" id="how"><span class="eyebrow">How it works</span><h2>Three steps, no late nights</h2>
+      <div class="grid"><div class="card"><span class="num">Step 1</span><h3>Drop in your files</h3><p>Slides, notes, Word, Excel or a photo of a page. Paste text if that&rsquo;s quicker.</p></div><div class="card"><span class="num">Step 2</span><h3>Pick how you want it</h3><p>Simple notes, slides, exam notes, a quiz or a full mock exam.</p></div><div class="card"><span class="num">Step 3</span><h3>Study or mark</h3><p>Students revise and join talk rooms. Teachers mark papers and track progress.</p></div></div></section>
+    <section class="blk" id="usecases" style="padding-top:0"><span class="eyebrow">Built for your course</span><h2>Pick your field and try a sample</h2>
+      <div class="fl" id="areas" aria-label="Fields of study"></div>
+      <div class="card"><p id="sampleTxt" style="margin:0 0 14px"></p><button class="btn" id="useSample">Make notes from this sample</button></div></section>
+    <section class="blk" id="features" style="padding-top:0"><div class="grid">
+      <div class="card"><span class="num">Your material</span><h3>Notes from what you upload</h3><p>StudySense works from your own slides and notes, so the summary matches your course.</p></div>
+      <div class="card"><span class="num">Practice</span><h3>No surprises on exam day</h3><p>Turn your notes into quizzes and full mock exams with a memo.</p></div>
+      <div class="card"><span class="num">Community</span><h3>Study with people like you</h3><p>Join talk rooms for your occupation and subject, post articles and comment.</p></div></div></section>
+    
+    <section class="blk" id="pricing-sec" style="padding-top:0"><span class="eyebrow">Simple pricing</span><h2>Start free, subscribe when you&rsquo;re ready</h2><div class="grid" id="plans"></div></section>
+    <section class="blk" id="faq-sec" style="padding-top:0"><span class="eyebrow">Questions</span><h2>Frequently asked questions</h2><div id="faq"></div></section>
+  </div>
+</div></section>
+
+<!-- GUEST -->
+<section class="view" id="guest"><div class="wrap">
+  <h2 id="gT">Try StudySense free</h2><p class="lead" id="gS" style="font-size:16px">Paste your notes below. Guests get 5 free summaries, then it&rsquo;s time to sign in and subscribe.</p>
+  <div class="chat" style="margin-top:18px">
+    <div class="chat-top"><span>StudySense AI</span><span id="left"></span></div>
+    <div class="modebar"></div><div class="msgs" id="msgs"></div><div class="fchips" id="gFiles"></div>
+    <div class="comp">
+      <button class="btn ghost sm" id="attach" aria-label="Upload any file or document">Upload</button><input type="file" id="file" hidden multiple>
+      <textarea id="inp" rows="1" placeholder="Paste your notes or a chapter here&hellip;" aria-label="Your notes"></textarea>
+      <button class="btn" id="send">Summarise</button>
+    </div>
+  </div></div></section>
+
+<!-- SIGN IN -->
+<section class="view" id="signin"><div class="wrap auth">
+  <h2 id="aT">Sign in</h2><p class="note">Demo only: no real account is created.</p>
+  <div class="consent" id="consent">
+    <label class="chk"><input type="checkbox" id="cOk"><span>I have read the <button class="lnk2" data-go="privacy">Privacy Policy</button> and I consent to StudySense processing my personal information as described.</span></label>
+    <label class="chk"><input type="checkbox" id="cMkt"><span>Send me study tips and product news. This is optional and I can opt out any time.</span></label>
+    <label class="chk"><input type="checkbox" id="cMinor"><span>I am under 18</span></label>
+    <div id="minorBox" style="display:none"><label for="gEm">Parent or guardian email</label><input id="gEm" type="email" autocomplete="off"><label class="chk"><input type="checkbox" id="gOk"><span>My parent or guardian has read the Privacy Policy and consents to me using StudySense.</span></label></div>
+  </div>
+  <button class="gbtn" id="google"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 010-9.4l-7.9-6.1a24 24 0 000 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continue with Google</button>
+  <div class="or">or use your email</div>
+  <div id="nameWrap"><label for="nm">Full name</label><input id="nm" autocomplete="name"></div>
+  <label for="em">Email</label><input id="em" type="email" autocomplete="email">
+  <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
+  <div class="row"><button class="btn" id="go">Continue</button><button class="btn ghost" id="swap">Create an account</button></div>
+</div></section>
+
+<!-- ROLE -->
+<section class="view" id="role"><div class="wrap">
+  <h2>How will you use StudySense?</h2><p class="lead" style="font-size:16px">You can change this later in your profile.</p>
+  <div class="pick" style="margin-top:20px">
+    <button data-r="student"><h3>I&rsquo;m a student</h3><p class="note">Summaries, predicted questions and study rooms.</p></button>
+    <button data-r="teacher"><h3>I&rsquo;m a teacher or lecturer</h3><p class="note">Upload a memo, mark papers and keep a marking history.</p></button>
+  </div></div></section>
+
+<!-- PROFILE -->
+<section class="view" id="profile"><div class="wrap" style="max-width:640px">
+  <h2>Your profile</h2>
+  <label for="pn">Name</label><input id="pn">
+  <label for="pe">Email</label><input id="pe" disabled>
+  <div class="two"><div><label for="pr">Role</label><select id="pr"><option value="student">Student</option><option value="teacher">Teacher / lecturer</option></select></div>
+  <div><label for="po">Occupation</label><select id="po"></select></div></div>
+  <div class="two"><div><label for="pf">Field of study or subject</label><select id="pf"></select></div>
+  <div><label for="pi">School or institution</label><input id="pi" placeholder="e.g. IIE Rosebank College"></div></div>
+  <div class="card" style="margin-top:18px"><b>Plan: <span id="plan"></span></b><p class="note" id="planNote"></p></div>
+  <div class="row"><button class="btn" id="saveP">Save profile</button><button class="btn ghost" id="out">Sign out</button></div>
+  <p class="note"><button class="lnk2" data-go="mydata">Manage my data and POPIA rights</button> &middot; <button class="lnk2" data-go="privacy">Privacy Policy</button></p>
+</div></section>
+
+<!-- STUDENT -->
+<section class="view" id="student"><div class="wrap">
+  <h2 id="sHi"></h2><p class="lead" style="font-size:16px">Here&rsquo;s what people in your talk rooms are sharing today.</p>
+  <div class="row"><button class="btn" data-go="guest">Make notes</button><button class="btn ghost" data-go="rooms">Post an article</button></div>
+  <div class="sfeed" id="sFeed"></div>
+</div></section>
+
+<!-- TEACHER -->
+<section class="view" id="teacher"><div class="dash">
+  <aside class="side">
+    <div class="slogo"><i class="mark"></i>Study Sense</div>
+    <nav aria-label="Teacher menu">
+      <button class="on" data-scroll="dTop"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Dashboard</button>
+      <button data-scroll="markCard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg>Mark papers</button>
+      <button data-scroll="modsSec"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg>Modules</button>
+      <button data-go="guest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4zM8 12h8M8 16h5"/></svg>Notes</button>
+      <button data-go="rooms"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.7 7L4 20l1.1-4.6A8 8 0 1121 12z"/></svg>Talk rooms</button>
+      <button data-go="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 00-2-1.2L14 3h-4l-.6 2.7a7 7 0 00-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 005 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 002 1.2L10 21h4l.6-2.7a7 7 0 002-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></svg>Settings</button>
+      <button id="dOut"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5M15 12H3M15 4h4a2 2 0 012 2v12a2 2 0 01-2 2h-4"/></svg>Sign out</button>
+    </nav>
+    <div class="upg" id="upg"></div>
+  </aside>
+
+  <div class="dmain" id="dTop">
+    <div class="dbar"><h2>Dashboard</h2><div class="dtools"><input id="tSearch" type="search" placeholder="Search results" aria-label="Search results"><button class="btn ghost sm" data-theme-toggle>Light mode</button></div></div>
+    <div class="banner"><div><h3 id="tHi"></h3><p id="tBanner"></p><button class="btn sm" id="newSess">Start a new marking session</button></div>
+      <svg width="120" height="110" viewBox="0 0 120 110" aria-hidden="true"><rect x="22" y="14" width="70" height="86" rx="8" fill="#fff" stroke="#0A1024" stroke-width="3"/><path d="M36 38l6 6 12-12M36 62l6 6 12-12" stroke="#059669" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M66 38h16M66 62h16" stroke="#C9C4D8" stroke-width="4" stroke-linecap="round"/><circle cx="96" cy="84" r="16" fill="#93DD0C"/><path d="M89 84l5 5 9-10" stroke="#0A1024" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="kp"><div class="card"><b id="t1">0</b><span class="note">Papers marked</span></div><div class="card"><b id="t2">&ndash;</b><span class="note">Latest class average</span></div><div class="card"><b id="t3">0</b><span class="note" id="t3n">Modules</span></div></div>
+
+    <div class="dgrid">
+      <div class="card"><div class="sheet-head"><h3 style="margin:0">Results</h3><button class="btn ghost sm" data-scroll="modsSec">More</button></div><div id="rList"></div></div>
+      <div>
+        <div class="card"><h3 style="margin-top:0">Marking activity, last 7 days</h3><div class="cv" style="height:200px"><canvas id="cAct"></canvas></div></div>
+        <div class="card" style="margin-top:16px"><h3 style="margin-top:0">Top performers</h3><div class="avs" id="tops"></div></div>
+      </div>
+    </div>
+    <div class="card"><h3 style="margin-top:0">Recent assessments</h3><div class="tbl"><table id="aTbl"></table></div></div>
+
+    <h3 class="sec">Mark papers</h3>
+    <p class="note" id="tSub" style="margin-top:0"></p>
+    <div class="card" id="markCard">
+      <div class="sheet-head"><h3 style="margin:0">New marking session</h3><button class="btn ghost sm" id="tSample">Try with sample data</button></div>
+      <p class="note" style="margin:8px 0 0">Student papers contain personal information. Only upload papers you are authorised to mark, and leave out ID numbers and other sensitive details. <button class="lnk2" data-go="privacy">How we protect it</button></p>
+      <div class="two">
+        <div><label for="tMod">Module</label><input id="tMod" list="modList" placeholder="e.g. Life Sciences Grade 11"><datalist id="modList"></datalist></div>
+        <div><label for="tTitle">Assessment name</label><input id="tTitle" placeholder="e.g. Test 2"></div>
+      </div>
+      <div class="two">
+        <div>
+          <label for="memo">Memo (one answer per line)</label>
+          <textarea id="memo" rows="7" placeholder="Type the memo, paste it, or upload it. You can also drop a file onto this box."></textarea>
+          <div class="row" style="margin:8px 0"><button class="btn ghost sm" id="upMemo">Upload memo</button><button class="btn ghost sm" id="scanMemo">Scan memo</button></div>
+          <input type="file" id="fMemo" hidden multiple><input type="file" id="fMemoScan" hidden accept="image/*" capture="environment">
+          <div class="fchips" id="memoFiles" style="padding:0"></div>
+        </div>
+        <div>
+          <label>Student papers</label>
+          <div class="dz small" id="paperDz">Drop answer sheets here. Word, PDF, Excel or photos of scanned papers all work. One file per student.</div>
+          <div class="row" style="margin:8px 0"><button class="btn ghost sm" id="upPapers">Upload answer sheets</button><button class="btn ghost sm" id="scanPaper">Scan with camera</button></div>
+          <input type="file" id="fPapers" hidden multiple><input type="file" id="fPaperScan" hidden accept="image/*" capture="environment">
+          <div class="note" id="paperNote"></div>
+          <div id="paperList"></div>
+        </div>
+      </div>
+      <details><summary class="note" style="cursor:pointer">Or type one student&rsquo;s answers</summary>
+        <label for="tName">Student name</label><input id="tName" placeholder="e.g. Thandi Mokoena">
+        <label for="stu">Answers (one per line)</label><textarea id="stu" rows="5"></textarea>
+      </details>
+      <div class="row"><button class="btn" id="mark">Mark papers</button><span class="note" id="draftNote"></span></div>
+    </div>
+
+    <div class="card" id="sheetCard" style="display:none;margin-top:16px">
+      <div class="sheet-head"><h3 style="margin:0">Marking summary</h3>
+        <div class="row"><button class="btn ghost sm" id="dlXlsx">Download Excel</button><button class="btn ghost sm" id="dlCsv">Download CSV</button><button class="btn sm" id="saveMod">Save to module</button></div></div>
+      <p id="sumLine" style="margin:10px 0 0"></p>
+      <div class="tbl"><table id="tbl"></table></div>
+      <p class="note">Tip: tap any mark to change it. The totals update straight away.</p>
+    </div>
+
+    <h3 class="sec" id="modsSec">Your modules</h3>
+    <div class="note" id="slots"></div>
+    <div class="grid" id="mods"></div>
+    <div class="card" id="analysis" style="display:none;margin-top:16px">
+      <div class="sheet-head"><h3 id="anT" style="margin:0"></h3><button class="btn ghost sm" id="anX">Close</button></div>
+      <div class="two charts"><div class="cv"><canvas id="c1"></canvas></div><div class="cv"><canvas id="c2"></canvas></div><div class="cv"><canvas id="c3"></canvas></div><div class="cv"><canvas id="c4"></canvas></div></div>
+    </div>
+  </div>
+
+  <aside class="right">
+    <div class="prof"><div class="av big" id="pAv"></div><b id="pName"></b><span class="note" id="pRole"></span></div>
+    <h4>Up next</h4><div id="upNext"></div>
+    <div class="bal"><small>LATEST CLASS AVERAGE</small><b id="bigAvg">&ndash;</b><span id="bigSub"></span></div>
+    <div class="card"><h4 style="margin-top:0">Achievements</h4><div id="ach"></div></div>
+  </aside>
+</div></section>
+
+<!-- ROOMS -->
+<section class="view" id="rooms"><div class="wrap">
+  <h2>Talk rooms</h2><p class="lead" style="font-size:16px">Meet people by occupation and by what they study.</p>
+  <div class="fl" id="f1" aria-label="Filter by occupation"></div><div class="fl" id="f2" aria-label="Filter by subject"></div>
+  <div class="rooms"><div class="rl" id="rl"></div>
+    <div><div class="card"><b id="rt">Pick a room</b><span class="note" id="rm"></span><div id="newArt" style="display:none"><label for="at">Post an article</label><input id="at" placeholder="Article title"><label for="ab">Your article</label><textarea id="ab" rows="4" placeholder="Share what you’ve learned, a study tip or a summary…"></textarea><div class="row" style="margin-bottom:0"><button class="btn" id="apost">Post article</button></div></div></div><div id="feed"></div>
+    </div></div>
+</div></section>
+
+<!-- PRIVACY -->
+<section class="view" id="privacy"><div class="wrap legal">
+  <h2>Privacy Policy and POPIA notice</h2>
+  <div id="policy"></div>
+</div></section>
+
+<!-- MY DATA -->
+<section class="view" id="mydata"><div class="wrap legal">
+  <h2>Your data and POPIA rights</h2>
+  <p class="lead" style="font-size:16px">It&rsquo;s your information, so you&rsquo;re in charge of it. Download it, delete it, or ask us anything.</p>
+  <div class="grid">
+    <div class="card"><h3>Download my data</h3><p>Get a copy of what StudySense holds about you as a file.</p><p><button class="btn sm" id="dlMy">Download</button></p></div>
+    <div class="card"><h3>Marketing emails</h3><label class="chk" style="margin:0"><input type="checkbox" id="mkt"><span>Send me study tips and product news</span></label></div>
+    <div class="card"><h3>Delete my data</h3><p>Remove your account, notes, modules and posts. This can&rsquo;t be undone.</p><p><button class="btn ghost sm" id="delMy">Delete everything</button></p></div>
+  </div>
+  <h3 class="sec">Send a request to our Information Officer</h3>
+  <div class="card">
+    <label for="rqType">What would you like to do?</label>
+    <select id="rqType"><option>See the information you hold about me</option><option>Correct my information</option><option>Delete my information</option><option>Object to how my information is used</option><option>Withdraw my consent</option><option>Ask about a child&rsquo;s information (parent or guardian)</option><option>Report a privacy concern</option></select>
+    <label for="rqText">Details</label><textarea id="rqText" rows="4" placeholder="Tell us what you need. Please don&rsquo;t include ID numbers or passwords."></textarea>
+    <label for="rqEm">Your email</label><input id="rqEm" type="email">
+    <div class="row"><button class="btn" id="rqSend">Send request</button></div>
+    <p class="note">We may ask you to confirm who you are before we share or delete anything. We aim to reply within 30 days.</p>
+  </div>
+  <h3 class="sec">Contacts</h3><div id="contacts"></div>
+</div></section>
+
+<!-- PRICING -->
+<section class="view" id="pricing"><div class="wrap"><h2>Pricing</h2><div class="grid" id="plans2"></div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><b>StudySense</b><p>AI notes, quizzes, mock exams and marking for South African students and teachers.</p></div>
+    <div><b>Study tools</b><button class="lnk" data-go="guest">Try free</button><button class="lnk" data-go="student">Student dashboard</button><button class="lnk" data-go="teacher">Teacher dashboard</button></div>
+    <div><b>Community</b><button class="lnk" data-go="rooms">Talk rooms</button></div>
+    <div><b>Account</b><button class="lnk" data-go="signin">Sign in</button><button class="lnk" data-go="profile">Profile</button><button class="lnk" data-go="pricing">Pricing</button><button class="lnk" data-go="privacy">Privacy Policy</button><button class="lnk" data-go="mydata">Your data (POPIA)</button></div>
+  </div>
+  <div class="fbot"><a class="nw" href="https://thenextwebstudio.lovable.app/" target="_blank" rel="noopener" aria-label="Designed and built by The NextWeb Studio"><svg class="nwm" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 3L57 30 30 57 3 30z" fill="none" stroke="#B2B5BA" stroke-width="1.6"/><path d="M30 9L51 30 30 51 9 30z" fill="none" stroke="#B2B5BA" stroke-width="1.2"/><text x="30" y="40" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="30" font-weight="600" fill="#B2B5BA">T</text></svg><span class="nwt"><small>Designed &amp; built by</small><b>THE NEXTWEB</b><em>STUDIO</em></span></a><div class="fmeta"><a href="https://www.instagram.com/studiothenextweb/" target="_blank" rel="noopener">@studiothenextweb</a> &middot; &copy; 2026 &mdash; Made in South Africa<br><span>Upload only your own notes or material you have the right to share.</span></div></div>
+</div></footer>
+
+<div class="modal" id="pay" role="dialog" aria-modal="true" aria-labelledby="pT"><div class="card">
+  <h3 id="pT">You&rsquo;ve used your 5 free summaries</h3><p class="note" id="pD"></p>
+  <div class="row"><button class="btn" id="pGo"></button><button class="btn ghost" id="pX">Not now</button></div></div></div>
+<div class="notice" id="notice" role="region" aria-label="Storage notice" style="display:none"><span>StudySense keeps a little data in your browser (your session, saved work and theme) so it works. We don&rsquo;t use advertising trackers.</span><span><button class="lnk2" data-go="privacy">Read the policy</button> <button class="btn sm" id="noticeOk">Got it</button></span></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script>/* ===== StudySense API layer =====
+   Backend team: set API.base (for example 'https://api.studysense.co.za') and build the
+   endpoints listed in README.md. While API.base is empty, everything runs locally in the
+   browser so the whole UI works as a demo. */
+const API = {
+  base: '',
+
+  async call(path, body, isForm) {
+    const res = await fetch(API.base + path, {
+      method: 'POST',
+      credentials: 'include',
+      headers: isForm ? {} : { 'Content-Type': 'application/json' },
+      body: isForm ? body : JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error('Request failed: ' + res.status);
+    return res.json();
+  },
+
+  /* Notes. Returns {mode, pts, kw, qs, quiz, groups} or null when the text is too short. */
+  summarise(text, mode) {
+    return API.base ? API.call('/v1/notes', { text, mode }) : Promise.resolve(analyse(text));
+  },
+
+  /* Scans and photos. Returns plain text. */
+  ocr(file, say) {
+    if (API.base) {
+      const f = new FormData();
+      f.append('file', file);
+      return API.call('/v1/ocr', f, true).then(r => r.text);
+    }
+    if (!window.Tesseract) return Promise.resolve('');
+    return Tesseract.recognize(file, 'eng', {
+      logger: m => { if (say && m.status === 'recognizing text') say('reading ' + Math.round(m.progress * 100) + '%'); }
+    }).then(r => r.data.text);
+  },
+
+  /* Marking. papers = [{name, text}]. Returns [{name, scores:[0 | 0.5 | 1, ...]}] */
+  mark(memoLines, papers) {
+    return API.base
+      ? API.call('/v1/marking', { memo: memoLines, papers }).then(r => r.results)
+      : Promise.resolve(papers.map(p => ({ name: p.name, scores: markLocal(memoLines, p.text) })));
+  },
+
+  /* POPIA rights: export and delete everything held about the signed-in person. */
+  exportMe() {
+    return API.base ? fetch(API.base + '/v1/me/export', { credentials: 'include' }).then(r => r.json()) : Promise.resolve(JSON.parse(JSON.stringify(S)));
+  },
+  deleteMe() {
+    return API.base ? fetch(API.base + '/v1/me', { method: 'DELETE', credentials: 'include' }).then(r => { if (!r.ok) throw new Error(r.status); }) : Promise.resolve();
+  }
+};
+</script>
+<script>var $=function(s){return document.querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
+var S={n:0,user:null,sub:false,hist:[],marks:[]};
+try{var raw=localStorage.getItem('ss');if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+function save(){try{localStorage.setItem('ss',JSON.stringify(S))}catch(e){}}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},2200)}
+var OCC=['Student','Teacher','Lecturer','Developer','Nurse','Accountant','Other'],FIELD=['History','IT','Life Sciences','Commerce','Law','Mathematics'];
+var PROT=['profile','student','teacher','rooms'];
+function esc(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+
+/* routing */
+function show(v){
+  if(v==='dash')v=S.user&&S.user.role==='teacher'?'teacher':'student';
+  if(PROT.indexOf(v)>-1&&!S.user){toast('Pop in your details first and then we can go there');v='signin'}
+  $$('.view').forEach(function(e){e.classList.toggle('on',e.id===v)});
+  $$('#nav button').forEach(function(b){b.setAttribute('aria-current',b.dataset.go===v)});
+  window.scrollTo(0,0);try{history.replaceState(null,'','#'+v)}catch(e){}
+  if(v==='guest')renderLeft();if(v==='profile')fillProfile();if(v==='student')renderStudent();if(v==='teacher')renderTeacher();if(v==='rooms')renderRooms();afterShow(v);
+  $('#authBtn').textContent=S.user?'Profile':'Sign in';
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-go]');if(b)show(b.dataset.go)});
+$('#authBtn').onclick=function(){show(S.user?'profile':'signin')};
+
+/* static blocks */
+var PL='<div class="card price"><h3>Guest</h3><div class="amt">Free</div><ul><li>5 summaries</li><li>No sign-up needed</li></ul><button class="btn ghost" data-go="guest">Try now</button></div><div class="card price pop"><span class="tag">Most popular</span><h3>Student</h3><div class="amt">R50<small style="font-size:15px;font-weight:500"> /month</small></div><ul><li>Unlimited summaries</li><li>Predicted questions</li><li>Saved history</li><li>Talk rooms</li></ul><button class="btn" data-sub="1">Subscribe</button></div><div class="card price"><h3>Teacher</h3><div class="amt">R50<small style="font-size:15px;font-weight:500"> /month</small></div><ul><li>Memo-based marking</li><li>Marking history</li><li>Talk rooms</li></ul><button class="btn" data-sub="1">Subscribe</button></div>';
+$('#plans').innerHTML=PL;$('#plans2').innerHTML=PL;
+document.addEventListener('click',function(e){if(e.target.closest('[data-sub]'))subscribe()});
+function subscribe(){if(!S.user){toast('Sign in first, then subscribe');show('signin');return}S.sub=true;save();$('#pay').classList.remove('on');toast('Subscribed (demo). Unlimited access on.');show('profile')}
+
+/* AI summariser (runs in your browser, demo) */
+var STOP='the and that with this from have they were which their there about would could should into than then also been being what when where will your more some such only other these those because while through over each very just'.split(' ');
+function analyse(text){
+  var t=text.replace(/\s+/g,' ').trim();if(t.length<80)return null;
+  var ss=(t.match(/[^.!?]+[.!?]*/g)||[t]).map(function(x){return x.trim()}).filter(function(x){return x.length>25});if(!ss.length)ss=[t];
+  var f={};t.toLowerCase().replace(/[^a-z\s]/g,'').split(' ').forEach(function(w){if(w.length>3&&STOP.indexOf(w)<0)f[w]=(f[w]||0)+1});
+  var sc=ss.map(function(s,i){var w=s.toLowerCase().replace(/[^a-z\s]/g,'').split(' '),v=0;w.forEach(function(x){v+=f[x]||0});return {i:i,s:s,v:v/Math.pow(w.length,.6)}});
+  var k=Math.min(4,Math.max(1,Math.ceil(ss.length/3)));
+  var top=sc.slice().sort(function(a,b){return b.v-a.v}).slice(0,k).sort(function(a,b){return a.i-b.i});
+  var kw=Object.keys(f).sort(function(a,b){return f[b]-f[a]}).slice(0,5);
+  var qs=kw.slice(0,3).map(function(w,i){return ['What is '+w+', and why does it matter in this topic?','Explain the role of '+w+' using an example.','Discuss '+w+' and how it links to the other key ideas.'][i]});
+  return {pts:top.map(function(x){return x.s}),kw:kw,qs:qs};
+}
+function resHTML(r){return '<h4>Summary</h4><ul>'+r.pts.map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ul><h4>Key terms</h4><div class="chips">'+r.kw.map(function(k){return '<span>'+esc(k)+'</span>'}).join('')+'</div><h4>Predicted questions</h4><ul>'+r.qs.map(function(q){return '<li>'+esc(q)+'</li>'}).join('')+'</ul>'}
+function canUse(){if(S.sub)return true;if(S.n>=5){openPay();return false}return true}
+function used(){if(!S.sub)S.n++;save();renderLeft()}
+function renderLeft(){$('#left').textContent=S.sub?'Unlimited (subscribed)':Math.max(0,5-S.n)+' of 5 free summaries left'}
+function openPay(){
+  $('#pD').textContent=S.user?'Subscribe for R50 a month to keep going. Unlimited summaries, marking and talk rooms.':'Sign in and subscribe for R50 a month to keep going. Unlimited summaries, marking and talk rooms.';
+  $('#pGo').textContent=S.user?'Subscribe for R50/month':'Sign in to subscribe';$('#pay').classList.add('on');$('#pGo').focus()}
+$('#pGo').onclick=function(){$('#pay').classList.remove('on');if(S.user)subscribe();else{S.next='pay';show('signin')}};
+$('#pX').onclick=function(){$('#pay').classList.remove('on')};
+
+/* guest chat */
+function addMsg(c,h){var d=document.createElement('div');d.className='m '+c;d.innerHTML=h;$('#msgs').appendChild(d);$('#msgs').scrollTop=1e9;return d}
+addMsg('a','Hi there! Paste your notes or drop in a file (PDF, Word, PowerPoint, Excel, even a photo) and I&rsquo;ll turn it into the note type you pick above.');
+function send(){
+  var t=$('#inp').value.trim();if(!t)return;if(!canUse())return;
+  addMsg('u',esc(t.length>400?t.slice(0,400)+'\u2026':t));$('#inp').value='';
+  var th=addMsg('a',loadMsg());
+  setTimeout(function(){API.summarise(t,S.mode).then(function(r){if(!r){th.innerHTML='That\u2019s a bit short. Paste a few more sentences (about 80 characters) and I\u2019ll take it from there.';return}th.innerHTML=resHTML(r)+actionsHTML();used()}).catch(function(){th.innerHTML='Hmm, something went wrong on our side. Please try again in a moment.'})},900);
+}
+$('#send').onclick=send;$('#inp').onkeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}};
+$('#attach').onclick=function(){$('#file').click()};
+$('#file').onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){$('#inp').value=String(r.result).slice(0,6000);toast('File loaded')};r.readAsText(f)};
+
+/* sign in */
+var up=false;
+function setMode(){$('#aT').textContent=up?'Create your account':'Sign in';$('#nameWrap').style.display=up?'block':'none';$('#swap').textContent=up?'I have an account':'Create an account'}
+setMode();$('#swap').onclick=function(){up=!up;setMode()};
+function login(name,email){S.user=S.user||{role:null,occ:'Student',field:'History',inst:''};S.user.name=name;S.user.email=email;save();$('#authBtn').textContent='Profile';
+  if(!S.user.role)show('role');else if(!S.sub&&S.n>=5)show('pricing');else show('dash')}
+$('#google').onclick=function(){login('Amava','amava@gmail.com')};
+$('#go').onclick=function(){var e=$('#em').value.trim();if(!e){toast('Enter your email');return}login($('#nm').value.trim()||e.split('@')[0],e)};
+$$('#role [data-r]').forEach(function(b){b.onclick=function(){S.user.role=b.dataset.r;S.user.occ=b.dataset.r==='teacher'?'Teacher':'Student';save();show('profile')}});
+
+/* profile */
+function opts(a,v){return a.map(function(x){return '<option'+(x===v?' selected':'')+'>'+x+'</option>'}).join('')}
+function fillProfile(){var u=S.user;$('#pn').value=u.name||'';$('#pe').value=u.email||'';$('#pr').value=u.role||'student';$('#po').innerHTML=opts(OCC,u.occ);$('#pf').innerHTML=opts(FIELD,u.field);$('#pi').value=u.inst||'';
+  $('#plan').textContent=S.sub?'Subscribed (R50/month)':'Free';$('#planNote').textContent=S.sub?'Unlimited access.':Math.max(0,5-S.n)+' free summaries left. Subscribe for unlimited access.'}
+$('#saveP').onclick=function(){var u=S.user;u.name=$('#pn').value;u.role=$('#pr').value;u.occ=$('#po').value;u.field=$('#pf').value;u.inst=$('#pi').value;save();toast('Profile saved')};
+$('#out').onclick=function(){S.user=null;save();$('#authBtn').textContent='Sign in';show('home')};
+
+/* rooms */
+var RM=[['Grade 12 History Study Group','Student','History',128],['Lecturers: History Teaching','Lecturer','History',41],['IT Students Hub','Student','IT',214],['Developers in Durban','Developer','IT',77],['Life Sciences Revision','Student','Life Sciences',96],['Teachers: Life Sciences','Teacher','Life Sciences',53],['Commerce and Accounting','Student','Commerce',88],['Accountants Network','Accountant','Commerce',35],['Nurses and Health Studies','Nurse','Life Sciences',29]];
+var RC={},cur=null,fo='All',ff='All';
+function chips(el,list,val,fn){$(el).innerHTML=['All'].concat(list).map(function(x){return '<button aria-pressed="'+(x===val)+'">'+x+'</button>'}).join('');$$(el+' button').forEach(function(b){b.onclick=function(){fn(b.textContent);renderRooms()}})}
+function renderRooms(){
+  chips('#f1',OCC.slice(0,6),fo,function(v){fo=v});chips('#f2',FIELD,ff,function(v){ff=v});
+  var L=RM.filter(function(r){return (fo==='All'||r[1]===fo)&&(ff==='All'||r[2]===ff)});
+  $('#rl').innerHTML=L.length?L.map(function(r){var i=RM.indexOf(r);return '<button data-i="'+i+'" aria-current="'+(cur===i)+'"><b>'+r[0]+'</b><small>'+r[1]+' \u00b7 '+r[2]+' \u00b7 '+r[3]+' members</small></button>'}).join(''):'<p class="note">No rooms match. Try another filter.</p>';
+  $$('#rl button').forEach(function(b){b.onclick=function(){openRoom(+b.dataset.i)}})}
+function openRoom(i){cur=i;var r=RM[i];if(!RC[i])RC[i]=[['Thandi','Anyone got notes for Monday\u2019s test?'],['Sipho','I\u2019ll share my summary in a bit.']];$('#rt').textContent=r[0];$('#rm').textContent=r[3]+' members';drawRoom();renderRooms()}
+function drawRoom(){$('#rmsgs').innerHTML=RC[cur].map(function(m){var me=m[0]==='You';return '<div class="m '+(me?'u':'a')+'"><small class="note">'+esc(m[0])+'</small><br>'+esc(m[1])+'</div>'}).join('');$('#rmsgs').scrollTop=1e9}
+function rsend(){var t=$('#rin').value.trim();if(!t)return;if(cur===null){toast('Pick a room first');return}RC[cur].push(['You',t]);$('#rin').value='';drawRoom()}
+
+
+/* ===== note types ===== */
+S.mode=S.mode||'simple';
+var MODES=[['simple','Simple notes'],['slides','Slides'],['exam','Exam notes'],['test','Test notes'],['extended','Extended notes']];
+function drawModes(){$$('.modebar').forEach(function(el){el.innerHTML='<span class="note" style="margin-right:6px">Note type:</span>'+MODES.map(function(m){return '<button aria-pressed="'+(S.mode===m[0])+'" data-m="'+m[0]+'">'+m[1]+'</button>'}).join('')})}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-m]');if(b){S.mode=b.dataset.m;save();drawModes()}});
+drawModes();
+function analyse(text){
+ var mode=S.mode||'simple',t=text.replace(/\s+/g,' ').trim();if(t.length<80)return null;
+ var ss=(t.match(/[^.!?]+[.!?]*/g)||[t]).map(function(x){return x.trim()}).filter(function(x){return x.length>25});if(!ss.length)ss=[t];
+ var f={};t.toLowerCase().replace(/[^a-z\s]/g,'').split(' ').forEach(function(w){if(w.length>3&&STOP.indexOf(w)<0)f[w]=(f[w]||0)+1});
+ var sc=ss.map(function(s,i){var w=s.toLowerCase().replace(/[^a-z\s]/g,'').split(' '),v=0;w.forEach(function(x){v+=f[x]||0});return {i:i,s:s,v:v/Math.pow(w.length,.6)}});
+ var N={simple:4,slides:12,exam:6,test:5,extended:12,quiz:8,mock:8}[mode],k=Math.max(1,Math.min(N,Math.ceil(ss.length*.7)));
+ var pts=sc.slice().sort(function(a,b){return b.v-a.v}).slice(0,k).sort(function(a,b){return a.i-b.i}).map(function(x){return x.s});
+ var kw=Object.keys(f).sort(function(a,b){return f[b]-f[a]}).slice(0,8);
+ var w=function(i){return kw[i%Math.max(kw.length,1)]||'this topic'};
+ var T=['What is '+w(0)+', and why does it matter?','Explain the role of '+w(1)+' using an example.','Compare '+w(0)+' with '+w(2)+'.','Define '+w(3)+' in your own words.','Discuss how '+w(4)+' links to '+w(1)+'.','Why is '+w(2)+' important?'];
+ var qn={simple:2,slides:0,exam:5,test:3,extended:3,quiz:0,mock:4}[mode];
+ var grp=function(n){var g=[];for(var i=0;i<pts.length;i+=n){var c=pts.slice(i,i+n),ti=kw.filter(function(x){return c.join(' ').toLowerCase().indexOf(x)>-1})[0]||'Part '+(g.length+1);g.push({h:ti.charAt(0).toUpperCase()+ti.slice(1),c:c})}return g};
+ var quiz=[];
+ pts.forEach(function(s,ix){if(quiz.length>=5)return;var low=s.toLowerCase(),a=kw.filter(function(x){return new RegExp('\\b'+x+'\\b').test(low)})[0];if(!a)return;
+  var o=[a].concat(kw.filter(function(x){return x!==a}).slice(0,3)).map(function(x,i){return {t:x,i:(i*5+a.length+ix)%7}}).sort(function(p,q){return p.i-q.i||p.t.localeCompare(q.t)}).map(function(x){return x.t});
+  quiz.push({s:s.replace(new RegExp('\\b'+a+'\\b','i'),'_____'),a:a,o:o})});
+ return {mode:mode,quiz:quiz,pts:pts,kw:kw,qs:T.slice(0,qn),groups:mode==='slides'?grp(3):mode==='extended'?grp(4):null};
+}
+function resHTML(r){
+ var li=function(a){return '<ul>'+a.map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ul>'},
+ ch=function(){return '<div class="chips">'+r.kw.map(function(k){return '<span>'+esc(k)+'</span>'}).join('')+'</div>'},
+ q=function(h){return r.qs.length?'<h4>'+h+'</h4>'+li(r.qs):''},
+ lab={simple:'Simple notes',slides:'Slides',exam:'Exam notes',test:'Test notes',extended:'Extended notes',quiz:'Quiz',mock:'Mock exam'}[r.mode||'simple'],o='<span class="tag">'+lab+'</span>';
+ switch(r.mode){
+  case 'slides':return o+r.groups.map(function(g,i){return '<div class="slide"><small class="note">Slide '+(i+1)+'</small><h4>'+esc(g.h)+'</h4>'+li(g.c)+'</div>'}).join('');
+  case 'exam':return o+'<h4>Must-know points</h4>'+li(r.pts)+'<h4>Key terms</h4>'+ch()+q('Predicted exam questions')+'<p class="note">Exam tip: use the key terms in your answers and match the length to the marks.</p>';
+  case 'test':return o+'<h4>Revision checklist</h4>'+li(r.pts.map(function(p){return '\u2610 '+p}))+q('Quick test');
+  case 'extended':return o+r.groups.map(function(g){return '<h4>'+esc(g.h)+'</h4><p>'+esc(g.c.join(' '))+'</p>'}).join('')+'<h4>Key terms</h4>'+ch()+q('Think about it');
+  case 'quiz':return o+(r.quiz&&r.quiz.length?'<div class="quizbox"><p class="note">Pick the missing word. Score: <b class="qsc">0</b>/'+r.quiz.length+'</p>'+r.quiz.map(function(x,i){return '<div class="qz"><b>'+(i+1)+'. '+esc(x.s)+'</b><div class="opts">'+x.o.map(function(t){return '<button class="opt" data-ok="'+(t===x.a?1:0)+'">'+esc(t)+'</button>'}).join('')+'</div></div>'}).join('')+'</div>':'<p>Add a longer text to build a quiz.</p>');
+  case 'mock':{var A=r.quiz||[],tot=A.length+4*r.qs.length+10;return o+'<div class="slide"><h4>Mock exam</h4><p class="note">Total: '+tot+' marks. Suggested time: '+Math.max(30,tot*2)+' minutes.</p></div><h4>Section A: multiple choice ('+A.length+' marks)</h4>'+A.map(function(x,i){return '<p><b>'+(i+1)+'.</b> '+esc(x.s)+'<br>'+x.o.map(function(t,j){return 'ABCD'[j]+') '+esc(t)}).join(' &nbsp; ')+'</p>'}).join('')+'<h4>Section B: short questions (4 marks each)</h4>'+li(r.qs)+'<h4>Section C: essay (10 marks)</h4><p>Discuss '+esc(r.kw[0]||'the topic')+', '+esc(r.kw[1]||'its causes')+' and '+esc(r.kw[2]||'its effects')+', using examples from your notes.</p><details><summary>Memo</summary><p>Section A: '+A.map(function(x,i){return (i+1)+'='+'ABCD'[x.o.indexOf(x.a)]}).join(', ')+'</p><p>Marking guide:</p>'+li(r.pts)+'</details>'}
+  default:return o+'<h4>Summary</h4>'+li(r.pts)+'<h4>Key terms</h4>'+ch()+q('Predicted questions');
+ }}
+/* ===== articles and comments ===== */
+function ensureArts(i){S.arts=S.arts||{};if(!S.arts[i]){var r=RM[i];S.arts[i]=[{t:'How I revise '+r[2]+' in 20 minutes a day',a:'Thandi',d:'2 days ago',b:'I turn each chapter into five questions and answer them from memory. It is quicker than rereading and I remember more.',c:[{a:'Sipho',t:'Trying this tonight, thanks!'}]}]}}
+function openRoom(i){cur=i;ensureArts(i);var r=RM[i];$('#rt').textContent=r[0];$('#rm').textContent=' \u00b7 '+r[3]+' members';$('#newArt').style.display='block';drawFeed();renderRooms()}
+function drawFeed(){if(cur===null){$('#feed').innerHTML='<p class="note">Pick a room to read and post articles.</p>';return}ensureArts(cur);
+ $('#feed').innerHTML=S.arts[cur].map(function(a,i){return '<div class="card art"><h3>'+esc(a.t)+'</h3><small class="note">by '+esc(a.a)+' \u00b7 '+esc(a.d)+'</small><p style="white-space:pre-wrap">'+esc(a.b)+'</p><b>'+a.c.length+' comment'+(a.c.length===1?'':'s')+'</b>'+a.c.map(function(c){return '<div class="cmt"><b>'+esc(c.a)+'</b> '+esc(c.t)+'</div>'}).join('')+'<div class="cm"><input aria-label="Comment" placeholder="Write a comment\u2026" id="ci'+i+'"><button class="btn sm" data-cb="'+i+'">Comment</button></div></div>'}).join('')}
+var _rr=renderRooms;renderRooms=function(){_rr();drawFeed()};
+document.addEventListener('click',function(e){var b=e.target.closest('[data-cb]');if(!b)return;var i=+b.dataset.cb,t=$('#ci'+i).value.trim();if(!t)return;S.arts[cur][i].c.push({a:S.user.name||'You',t:t});save();drawFeed()});
+$('#apost').onclick=function(){var t=$('#at').value.trim(),b=$('#ab').value.trim();if(!t||b.length<20){toast('Add a title and at least 20 characters');return}ensureArts(cur);S.arts[cur].unshift({t:t,a:S.user.name||'You',d:'Just now',b:b,c:[]});save();$('#at').value='';$('#ab').value='';drawFeed();toast('Article posted')};
+/* ===== quiz, mock exam, home ===== */
+MODES=[['simple','Simple notes'],['slides','Slides'],['exam','Exam notes'],['test','Test notes'],['extended','Extended notes'],['quiz','Quiz'],['mock','Mock exam']];drawModes();
+document.addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b)return;var q=b.closest('.qz');if(q.dataset.done)return;q.dataset.done=1;var ok=b.dataset.ok==='1';b.classList.add(ok?'good':'bad');if(!ok){var c=q.querySelector('[data-ok="1"]');if(c)c.classList.add('good')}var bx=q.closest('.quizbox');if(ok)bx.dataset.s=(+bx.dataset.s||0)+1;bx.querySelector('.qsc').textContent=bx.dataset.s||0});
+var SAM={'Arts & Humanities':'The Industrial Revolution began in Britain in the late eighteenth century. New machines, such as the spinning jenny and the steam engine, transformed how goods were produced. Factories replaced cottage industries, and people moved from villages into rapidly growing cities. Working conditions were often dangerous, which led to reforms and the rise of trade unions. The revolution later spread to Europe and North America, changing economies and societies.',
+'Business':'Supply and demand explains how prices are set in a market. Demand is the quantity of a product that consumers are willing to buy at a given price, and it usually falls as the price rises. Supply is the quantity producers are willing to sell, and it usually rises as the price rises. The equilibrium price is where supply equals demand, and the market clears. A shortage pushes the price up, while a surplus pushes the price down.',
+'Health Sciences':'The heart pumps blood through two circuits. In the pulmonary circuit, the right ventricle sends deoxygenated blood to the lungs, where it picks up oxygen. In the systemic circuit, the left ventricle pumps oxygenated blood through the aorta to the rest of the body. Valves between the chambers prevent blood from flowing backwards. Blood pressure is highest in the arteries and lowest in the veins.',
+'Law':'A valid contract in South African law requires consensus between the parties. The parties must have contractual capacity, which means they are legally able to enter an agreement. The performance promised must be lawful, possible and determinable. Some contracts must also comply with formalities, such as being in writing. If one of these requirements is missing, the contract may be void or voidable.',
+'Social Sciences':'Socialisation is the process through which people learn the norms and values of their society. Primary socialisation takes place in the family during early childhood. Secondary socialisation happens through schools, peer groups, religion and the media. Sociologists argue that socialisation shapes identity, behaviour and beliefs. Agents of socialisation can reinforce or challenge one another.',
+'STEM':'Photosynthesis is the process plants use to turn light energy into chemical energy. It takes place in the chloroplasts, where chlorophyll absorbs sunlight. In the light-dependent stage, water is split and oxygen is released, producing ATP and NADPH in the thylakoid membranes. In the Calvin cycle, which happens in the stroma, the enzyme RuBisCO fixes carbon dioxide into glucose. Light intensity, temperature and carbon dioxide concentration all limit the rate of photosynthesis.'};
+var selA='STEM';
+function drawAreas(){$('#areas').innerHTML=Object.keys(SAM).map(function(k){return '<button aria-pressed="'+(k===selA)+'" data-a="'+esc(k)+'">'+esc(k)+'</button>'}).join('');$('#sampleTxt').textContent=SAM[selA]}
+drawAreas();
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(b){selA=b.dataset.a;drawAreas()}});
+$('#useSample').onclick=function(){show('guest');$('#inp').value=SAM[selA];toast('Sample loaded. Press Summarise.')};
+var dz=$('#dz');
+function goFiles(fl){if(!fl.length)return;show('guest');handleFiles(fl,$('#inp'),$('#gFiles'))}
+dz.onclick=function(){$('#hFile').click()};
+dz.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('#hFile').click()}};
+['dragenter','dragover'].forEach(function(n){dz.addEventListener(n,function(e){e.preventDefault();dz.classList.add('over')})});
+['dragleave','drop'].forEach(function(n){dz.addEventListener(n,function(e){e.preventDefault();dz.classList.remove('over')})});
+dz.addEventListener('drop',function(e){goFiles(e.dataTransfer.files)});
+$('#hFile').onchange=function(e){goFiles(e.target.files);e.target.value=''};
+var FQ=[['What is StudySense?','A study assistant that turns your notes into summaries, slides, quizzes and mock exams. Teachers can also mark papers against a memo.'],['How do the free attempts work?','Guests get 5 free summaries. On the 6th attempt you sign in and subscribe for R50 a month to keep going.'],['Which files can I upload?','PDF, Word, PowerPoint, Excel, CSV and text files, plus photos or scans of paper. We read photos with OCR, and printed text works best.'],['What note types are there?','Simple notes, slides, exam notes, test notes, extended notes, a quiz and a mock exam with a memo.'],['Is this cheating?','No. StudySense is for studying. Use your own notes, follow your institution\u2019s rules and do not upload material you have no right to share.'],['How does marking work?','Teachers paste a memo and the student\u2019s answers. Each answer is checked against the memo and the teacher can override any mark.'],['Is my data safe?','This demo keeps data in your own browser. The full version will include a privacy policy, consent on sign-up and a way to delete your data, in line with POPIA.']];
+$('#faq').innerHTML=FQ.map(function(f){return '<details class="faq"><summary>'+esc(f[0])+'</summary><p>'+esc(f[1])+'</p></details>'}).join('');
+</script>
+<script>/* ===== Reading files in the browser =====
+   Text, CSV, Word (.docx), PowerPoint (.pptx), Excel (.xlsx .xls .xlsm .ods), PDF,
+   and photos or scans (OCR). Old binary .doc and .ppt files need saving as .docx/.pptx. */
+const IMG = ['png', 'jpg', 'jpeg', 'webp', 'bmp', 'gif'];
+const TXT = ['txt', 'md', 'csv', 'json', 'html', 'htm', 'xml', 'rtf'];
+const XLS = ['xlsx', 'xls', 'xlsm', 'xlsb', 'ods'];
+const decode = s => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+const stripTags = s => decode(s.replace(/<[^>]+>/g, ''));
+
+/* Returns text with one line per paragraph, row or slide item. Resolves '' when unreadable. */
+function readOne(f, say) {
+  return new Promise(res => {
+    const ext = f.name.toLowerCase().split('.').pop();
+    const fail = () => res('');
+    const asText = () => { const r = new FileReader(); r.onload = () => res(String(r.result)); r.onerror = fail; r.readAsText(f); };
+    const asBuf = cb => { const r = new FileReader(); r.onload = () => cb(r.result); r.onerror = fail; r.readAsArrayBuffer(f); };
+
+    if (TXT.includes(ext) || f.type.indexOf('text/') === 0) return asText();
+
+    if (ext === 'docx' && window.JSZip) return asBuf(b =>
+      JSZip.loadAsync(b).then(z => z.file('word/document.xml').async('string'))
+        .then(x => res(x.split('</w:p>').map(stripTags).join('\n'))).catch(fail));
+
+    if (ext === 'pptx' && window.JSZip) return asBuf(b =>
+      JSZip.loadAsync(b).then(z => {
+        const names = Object.keys(z.files).filter(k => /^ppt\/slides\/slide\d+\.xml$/.test(k))
+          .sort((a, c) => parseInt(a.match(/\d+/)[0]) - parseInt(c.match(/\d+/)[0]));
+        return Promise.all(names.map(k => z.file(k).async('string')));
+      }).then(xs => res(xs.map(x => x.split('</a:p>').map(stripTags).join('\n')).join('\n'))).catch(fail));
+
+    if (XLS.includes(ext) && window.XLSX) return asBuf(b => {
+      try {
+        const wb = XLSX.read(b, { type: 'array' }), out = [];
+        wb.SheetNames.forEach(n => XLSX.utils.sheet_to_json(wb.Sheets[n], { header: 1, blankrows: false }).forEach(row => {
+          const line = row.filter(c => c !== '' && c != null).join(' ');
+          if (line) out.push(line);
+        }));
+        res(out.join('\n'));
+      } catch (e) { fail(); }
+    });
+
+    if (ext === 'pdf' && window.pdfjsLib) return asBuf(b => {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      pdfjsLib.getDocument({ data: new Uint8Array(b) }).promise.then(d => {
+        const out = []; let p = Promise.resolve();
+        for (let i = 1; i <= d.numPages; i++) p = p.then(() => d.getPage(i).then(pg => pg.getTextContent()).then(c => {
+          let line = ''; c.items.forEach(x => { line += x.str + (x.hasEOL ? '\n' : ' '); }); out.push(line);
+        }));
+        return p.then(() => res(out.join('\n')));
+      }).catch(fail);
+    });
+
+    if (IMG.includes(ext) || f.type.indexOf('image/') === 0) {
+      if (say) say('reading the photo');
+      return API.ocr(f, say).then(res).catch(fail);
+    }
+    fail();
+  });
+}
+
+/* Makes plain lines read like sentences, so the summariser can find them. */
+const notesify = t => t.split('\n').map(l => l.trim()).filter(Boolean).map(l => /[.!?:]$/.test(l) ? l : l + '.').join(' ');
+
+/* Notes upload: reads every file, adds the text to a textarea and shows friendly chips. No length limit. */
+function handleFiles(fl, ta, el) {
+  const fs = [].slice.call(fl);
+  if (!fs.length) return;
+  el.innerHTML = fs.map(f => '<span>' + esc(f.name) + ' \u2026</span>').join('');
+  const sp = el.children;
+  Promise.all(fs.map((f, i) => readOne(f, m => { if (sp[i]) sp[i].textContent = f.name + ' (' + m + ')'; }).then(t => ({ n: f.name, t })))).then(r => {
+    const txt = r.map(x => notesify(x.t)).filter(Boolean).join('\n\n');
+    if (txt) ta.value = (ta.value ? ta.value + '\n\n' : '') + txt;
+    el.innerHTML = r.map(x => '<span>' + esc(x.n) + (x.t ? ' \u2713' : ' (couldn\u2019t read text)') + '</span>').join('');
+    const bad = r.filter(x => !x.t).length;
+    toast(bad ? 'I couldn\u2019t read ' + bad + ' file(s). Old .doc or .ppt files need saving as .docx or .pptx first.' : 'Got it! Your files are loaded.');
+  });
+}
+
+/* Drag and drop for any element. */
+function makeDrop(el, cb) {
+  ['dragenter', 'dragover'].forEach(n => el.addEventListener(n, e => { e.preventDefault(); el.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(n => el.addEventListener(n, e => { e.preventDefault(); el.classList.remove('over'); }));
+  el.addEventListener('drop', e => cb(e.dataTransfer.files));
+}
+
+$('#file').onchange = e => { handleFiles(e.target.files, $('#inp'), $('#gFiles')); e.target.value = ''; };
+makeDrop($('#guest .chat'), fl => handleFiles(fl, $('#inp'), $('#gFiles')));
+</script>
+<script>/* ===== Student dashboard: just the talk-room articles =====
+   Rooms that match the student's field of study and occupation come first. */
+function renderStudent() {
+  const u = S.user;
+  $('#sHi').textContent = greet() + ', ' + first(u.name) + '.';
+  const list = [];
+  RM.forEach((r, ri) => {
+    ensureArts(ri);
+    S.arts[ri].forEach((a, i) => list.push({ ri, i, a, hit: (r[2] === u.field ? 2 : 0) + (r[1] === u.occ ? 1 : 0) }));
+  });
+  list.sort((x, y) => y.hit - x.hit);
+  $('#sFeed').innerHTML = list.length ? list.map(x => {
+    const a = x.a, r = RM[x.ri];
+    return '<div class="card art"><span class="room-tag">' + esc(r[0]) + '</span><h3>' + esc(a.t) + '</h3><small class="note">by ' + esc(a.a) + ' &middot; ' + esc(a.d) + '</small><p style="white-space:pre-wrap">' + esc(a.b) + '</p><b>' + a.c.length + ' comment' + (a.c.length === 1 ? '' : 's') + '</b>' +
+      a.c.map(c => '<div class="cmt"><b>' + esc(c.a) + '</b> ' + esc(c.t) + '</div>').join('') +
+      '<div class="cm"><input aria-label="Comment" placeholder="Add your thoughts\u2026" id="sc' + x.ri + '_' + x.i + '"><button class="btn sm" data-sc="' + x.ri + ':' + x.i + '">Comment</button></div></div>';
+  }).join('') : '<p class="note">It\u2019s quiet in here. Be the first to post an article in a talk room.</p>';
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-sc]'); if (!b) return;
+  const p = b.dataset.sc.split(':'), t = $('#sc' + p[0] + '_' + p[1]).value.trim();
+  if (!t) return;
+  S.arts[p[0]][p[1]].c.push({ a: S.user.name || 'You', t }); save(); renderStudent();
+});
+</script>
+<script>/* ===== Teacher dashboard =====
+   Upload a memo and student papers (typed, Word, PDF, Excel or scans), get a marking spreadsheet,
+   save it into a module, and see graphs. Free plan keeps 3 modules, subscribers get unlimited. */
+const FREE_SLOTS = 3;
+let tPapers = [], tRows = [], tMemo = [], tCharts = [];
+
+const add = (a, b) => a + b;
+const tot = s => s.reduce(add, 0);
+const pct = (s, q) => Math.round(tot(s) / q * 100);
+const avgOf = ses => Math.round(ses.rows.reduce((a, r) => a + tot(r.s), 0) / (ses.rows.length * ses.q) * 100);
+const escA = s => esc(String(s)).replace(/"/g, '&quot;');
+const nice = n => n.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+/* ---------- marking ---------- */
+function kws(s) {
+  return s.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/)
+    .filter(w => w.length > 2 && STOP.indexOf(w) < 0)
+    .map(w => w.length > 4 ? w.replace(/s$/, '') : w);
+}
+function overlap(m, a) {
+  const k = kws(m);
+  if (!k.length) return 0;
+  const l = a.toLowerCase();
+  return k.filter(w => l.indexOf(w) > -1).length / k.length;
+}
+/* Matches each memo line to the best unused line in the student's paper, so order doesn't matter. */
+function markLocal(M, text) {
+  const A = text.split('\n').map(x => x.trim()).filter(Boolean), used = {};
+  return M.map((m, i) => {
+    let best = -1, bv = -1;
+    A.forEach((a, j) => { if (used[j]) return; const v = overlap(m, a) + (j === i ? 0.01 : 0); if (v > bv) { bv = v; best = j; } });
+    const r = Math.min(1, Math.max(0, bv));
+    if (best > -1 && r >= 0.3) used[best] = 1;
+    return r >= 0.6 ? 1 : r >= 0.3 ? 0.5 : 0;
+  });
+}
+
+/* ---------- page ---------- */
+function renderTeacher() {
+  const u = S.user, M = S.modules = S.modules || [];
+  $('#tHi').textContent = greet() + ', ' + first(u.name) + '.';
+  $('#tSub').textContent = 'Drop in the memo and the papers, and I\u2019ll do the marking while you make tea.';
+  const ses = [].concat.apply([], M.map(m => m.sessions)).sort((a, b) => a.d < b.d ? -1 : 1);
+  $('#t1').textContent = ses.reduce((n, s) => n + s.rows.length, 0);
+  $('#t2').textContent = ses.length ? avgOf(ses[ses.length - 1]) + '%' : '\u2013';
+  $('#t3').textContent = M.length;
+  $('#t3n').textContent = S.sub ? 'Modules (unlimited)' : 'Modules (free plan: ' + FREE_SLOTS + ')';
+  $('#modList').innerHTML = M.map(m => '<option value="' + escA(m.name) + '">').join('');
+  const d = S.tdraft;
+  if (d && !$('#memo').value && !$('#stu').value && !$('#tMod').value) {
+    $('#memo').value = d.memo || ''; $('#stu').value = d.stu || ''; $('#tMod').value = d.mod || '';
+    $('#tTitle').value = d.title || ''; $('#tName').value = d.name || '';
+    $('#draftNote').textContent = 'Welcome back. Your draft is right where you left it.';
+  }
+  drawPapers(); drawMods(); drawDash();
+}
+
+function drawPapers() {
+  $('#paperList').innerHTML = tPapers.length
+    ? tPapers.map((p, i) => '<div class="pl"><span>' + esc(p.name) + '</span><button data-rp="' + i + '" aria-label="Remove ' + escA(p.name) + '">&times;</button></div>').join('')
+    : '<p class="note" style="margin:6px 0 0">No papers yet. Add one file per student.</p>';
+}
+
+/* ---------- uploads and scans ---------- */
+async function addPapers(fl) {
+  const fs = [].slice.call(fl); let bad = 0;
+  for (const f of fs) {
+    const t = await readOne(f, m => { $('#paperNote').textContent = f.name + ': ' + m; });
+    if (t.trim()) tPapers.push({ name: nice(f.name), text: t }); else bad++;
+  }
+  $('#paperNote').textContent = '';
+  drawPapers();
+  toast(bad ? bad + ' file(s) had no readable text. For handwriting, a clear photo of typed or printed answers works best.' : 'Papers added. Press Mark papers when you\u2019re ready.');
+}
+async function addMemo(fl) {
+  const fs = [].slice.call(fl); let done = [];
+  for (const f of fs) {
+    const t = await readOne(f, m => { $('#memoFiles').innerHTML = '<span>' + esc(f.name) + ' (' + m + ')</span>'; });
+    if (t.trim()) { $('#memo').value = ($('#memo').value ? $('#memo').value + '\n' : '') + t.trim(); done.push(f.name); }
+  }
+  $('#memoFiles').innerHTML = done.map(n => '<span>' + esc(n) + ' \u2713</span>').join('');
+  toast(done.length ? 'Memo loaded. Have a quick look and tidy it up if needed.' : 'I couldn\u2019t read that memo. Try a clearer scan or a Word, PDF or Excel file.');
+  $('#memo').dispatchEvent(new Event('input'));
+}
+const wire = (btn, inp, fn) => { $(btn).onclick = () => $(inp).click(); $(inp).onchange = e => { fn(e.target.files); e.target.value = ''; }; };
+wire('#upMemo', '#fMemo', addMemo); wire('#scanMemo', '#fMemoScan', addMemo);
+wire('#upPapers', '#fPapers', addPapers); wire('#scanPaper', '#fPaperScan', addPapers);
+makeDrop($('#paperDz'), addPapers); makeDrop($('#memo'), addMemo);
+$('#paperList').addEventListener('click', e => { const b = e.target.closest('[data-rp]'); if (b) { tPapers.splice(+b.dataset.rp, 1); drawPapers(); } });
+
+/* ---------- drafts ---------- */
+let dt;
+['memo', 'stu', 'tMod', 'tTitle', 'tName'].forEach(id => $('#' + id).addEventListener('input', () => {
+  clearTimeout(dt);
+  dt = setTimeout(() => {
+    S.tdraft = { memo: $('#memo').value, stu: $('#stu').value, mod: $('#tMod').value, title: $('#tTitle').value, name: $('#tName').value };
+    save(); $('#draftNote').textContent = 'Draft saved';
+  }, 500);
+}));
+
+$('#tSample').onclick = () => {
+  $('#tMod').value = 'Life Sciences Grade 11'; $('#tTitle').value = 'Test 2';
+  $('#memo').value = 'Chloroplasts\nATP and NADPH\nRuBisCO fixes carbon dioxide\nStroma\nLight intensity or temperature';
+  tPapers = [
+    { name: 'Thandi Mokoena', text: 'In the chloroplasts\nOxygen, ATP and NADPH\nRuBisCO fixes carbon dioxide in the Calvin cycle\nThe stroma\nTemperature' },
+    { name: 'Sipho Dlamini', text: 'Chloroplast\nATP and NADPH\nIt splits water\nStroma\nLight intensity' },
+    { name: 'Naledi Khumalo', text: 'Mitochondria\nOxygen\nIt makes glucose\nThylakoid\nSunlight' }
+  ];
+  drawPapers(); toast('Sample loaded. Press Mark papers.');
+};
+
+/* ---------- mark ---------- */
+$('#mark').onclick = async () => {
+  const M = $('#memo').value.split('\n').map(x => x.trim()).filter(Boolean);
+  const P = tPapers.slice(), typed = $('#stu').value.trim();
+  if (typed) P.push({ name: $('#tName').value.trim() || 'Typed paper', text: typed });
+  if (!M.length) { toast('Add a memo first, so I know what the right answers are.'); return; }
+  if (!P.length) { toast('Add at least one student paper.'); return; }
+  if (!canUse()) return;
+  used();
+  const b = $('#mark'); b.disabled = true; b.textContent = loadMsg();
+  try {
+    const R = await API.mark(M, P);
+    tMemo = M; tRows = R.map(r => ({ name: r.name, s: r.scores }));
+    drawSheet();
+    $('#sheetCard').scrollIntoView({ behavior: 'smooth' });
+    toast('All done! ' + R.length + ' paper' + (R.length > 1 ? 's' : '') + ' marked.');
+  } catch (e) { toast('Hmm, the marking didn\u2019t work. Please try again.'); }
+  b.disabled = false; b.textContent = 'Mark papers';
+};
+
+/* ---------- the spreadsheet ---------- */
+function classAvg() { const q = tMemo.length; return Math.round(tRows.reduce((a, r) => a + tot(r.s), 0) / (tRows.length * q) * 100); }
+function drawSheet() {
+  const q = tMemo.length;
+  $('#sheetCard').style.display = 'block';
+  let h = '<thead><tr><th>Student</th>' + tMemo.map((m, i) => '<th title="' + escA(m) + '">Q' + (i + 1) + '</th>').join('') + '<th>Total</th><th>%</th></tr></thead><tbody>';
+  tRows.forEach((r, ri) => {
+    h += '<tr><td>' + esc(r.name) + '</td>' + r.s.map((v, ci) => '<td class="c ' + (v === 1 ? 'f' : v ? 'h' : 'z') + '" data-r="' + ri + '" data-c="' + ci + '">' + (v === 1 ? '\u2713' : v ? '\u00bd' : '\u2717') + '</td>').join('') + '<td><b>' + tot(r.s) + '/' + q + '</b></td><td>' + pct(r.s, q) + '%</td></tr>';
+  });
+  h += '<tr class="sum"><td>Class % correct</td>' + tMemo.map((m, ci) => '<td>' + Math.round(tRows.reduce((a, r) => a + r.s[ci], 0) / tRows.length * 100) + '%</td>').join('') + '<td>' + (tRows.reduce((a, r) => a + tot(r.s), 0) / tRows.length).toFixed(1) + '/' + q + '</td><td>' + classAvg() + '%</td></tr></tbody>';
+  $('#tbl').innerHTML = h;
+  const P = tRows.map(r => pct(r.s, q)), hi = Math.max.apply(null, P), lo = Math.min.apply(null, P);
+  $('#sumLine').innerHTML = '<b>' + tRows.length + '</b> paper' + (tRows.length > 1 ? 's' : '') + ' &middot; class average <b>' + classAvg() + '%</b> &middot; highest <b>' + hi + '%</b> (' + esc(tRows[P.indexOf(hi)].name) + ') &middot; lowest <b>' + lo + '%</b> &middot; pass rate <b>' + Math.round(P.filter(p => p >= 50).length / P.length * 100) + '%</b>';
+}
+$('#tbl').addEventListener('click', e => {
+  const c = e.target.closest('td.c'); if (!c) return;
+  const r = tRows[+c.dataset.r], i = +c.dataset.c;
+  r.s[i] = r.s[i] === 0 ? 0.5 : r.s[i] === 0.5 ? 1 : 0;
+  drawSheet();
+});
+
+/* ---------- export ---------- */
+function fname() {
+  const s = x => x.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return (s($('#tMod').value) || 'marking') + '-' + (s($('#tTitle').value) || 'results');
+}
+function aoa() {
+  const q = tMemo.length, A = [['Student'].concat(tMemo.map((m, i) => 'Q' + (i + 1)), ['Total', 'Percent'])];
+  tRows.forEach(r => A.push([r.name].concat(r.s, [tot(r.s), pct(r.s, q) + '%'])));
+  A.push([]); A.push(['Class % correct'].concat(tMemo.map((m, i) => Math.round(tRows.reduce((a, r) => a + r.s[i], 0) / tRows.length * 100) + '%')));
+  A.push(['Class average', classAvg() + '%']);
+  return A;
+}
+$('#dlXlsx').onclick = () => {
+  if (!window.XLSX) { toast('Excel export needs the SheetJS library to load. Check your connection.'); return; }
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(aoa()), 'Marking');
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([['Question', 'Memo answer']].concat(tMemo.map((m, i) => ['Q' + (i + 1), m]))), 'Memo');
+  XLSX.writeFile(wb, fname() + '.xlsx');
+};
+$('#dlCsv').onclick = () => {
+  if (!window.XLSX) { toast('CSV export needs the SheetJS library to load. Check your connection.'); return; }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([XLSX.utils.sheet_to_csv(XLSX.utils.aoa_to_sheet(aoa()))], { type: 'text/csv' }));
+  a.download = fname() + '.csv'; a.click();
+};
+
+/* ---------- modules (drafts) ---------- */
+$('#saveMod').onclick = () => {
+  if (!tRows.length) return;
+  const name = $('#tMod').value.trim() || 'My module', M = S.modules = S.modules || [];
+  let m = M.find(x => x.name.toLowerCase() === name.toLowerCase());
+  if (!m) {
+    if (!S.sub && M.length >= FREE_SLOTS) { openPaySlots(); return; }
+    m = { id: Date.now(), name, memo: '', sessions: [] }; M.push(m);
+  }
+  m.memo = tMemo.join('\n');
+  m.sessions.push({ d: new Date().toISOString(), t: $('#tTitle').value.trim() || 'Assessment ' + (m.sessions.length + 1), q: tMemo.length, rows: tRows.map(r => ({ name: r.name, s: r.s.slice() })) });
+  save(); renderTeacher(); toast('Saved to ' + name + '. Your graphs are ready below.');
+};
+function drawMods() {
+  const M = S.modules || [];
+  $('#slots').innerHTML = S.sub ? 'You\u2019re subscribed, so there\u2019s no limit on modules.' : M.length + ' of ' + FREE_SLOTS + ' free module slots used<div class="slot"><i style="width:' + Math.min(100, M.length / FREE_SLOTS * 100) + '%"></i></div>';
+  $('#mods').innerHTML = M.length ? M.map(m => {
+    const L = m.sessions[m.sessions.length - 1];
+    return '<div class="card"><h3>' + esc(m.name) + '</h3><p>' + m.sessions.length + ' marking session' + (m.sessions.length > 1 ? 's' : '') + ' &middot; latest average ' + avgOf(L) + '%</p><div class="row" style="margin:12px 0 0"><button class="btn sm" data-an="' + m.id + '">Analysis</button><button class="btn ghost sm" data-co="' + m.id + '">Continue</button><button class="btn ghost sm" data-del="' + m.id + '">Delete</button></div></div>';
+  }).join('') : '<p class="note">Nothing here yet. Mark a paper, press &ldquo;Save to module&rdquo; and it will show up here with graphs.</p>';
+}
+$('#mods').addEventListener('click', e => {
+  const M = S.modules || [], b = e.target.closest('button'); if (!b) return;
+  const id = +(b.dataset.an || b.dataset.co || b.dataset.del), m = M.find(x => x.id === id); if (!m) return;
+  if (b.dataset.an) openAnalysis(m);
+  if (b.dataset.co) { $('#tMod').value = m.name; $('#memo').value = m.memo; $('#markCard').scrollIntoView({ behavior: 'smooth' }); toast('Memo loaded. Add the new papers and mark away.'); }
+  if (b.dataset.del && confirm('Delete ' + m.name + ' and all its marking history?')) { S.modules = M.filter(x => x.id !== id); save(); $('#analysis').style.display = 'none'; renderTeacher(); }
+});
+$('#anX').onclick = () => { $('#analysis').style.display = 'none'; };
+
+/* ---------- graphs ---------- */
+function openAnalysis(m) {
+  $('#analysis').style.display = 'block'; $('#anT').textContent = m.name + ': how the class is doing';
+  $('#analysis').scrollIntoView({ behavior: 'smooth' });
+  if (!window.Chart) { toast('The graphs need Chart.js to load. Check your connection.'); return; }
+  tCharts.forEach(c => c.destroy()); tCharts = [];
+  const L = m.sessions[m.sessions.length - 1], q = L.q;
+  const v = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  Chart.defaults.color = v('--mute'); Chart.defaults.font.family = 'DM Sans, system-ui, sans-serif';
+  const grid = 'rgba(128,128,128,.2)', sc = { y: { beginAtZero: true, max: 100, grid: { color: grid } }, x: { grid: { color: grid } } };
+  const mk = (id, type, labels, data, title, color, axes) => tCharts.push(new Chart($(id), {
+    type, data: { labels, datasets: [{ label: title, data, backgroundColor: color, borderColor: color, tension: 0.35, borderRadius: 6 }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: axes ? sc : {}, plugins: { legend: { display: type === 'doughnut' }, title: { display: true, text: title } } }
+  }));
+  mk('#c1', 'bar', L.rows.map(r => r.name), L.rows.map(r => pct(r.s, q)), 'Latest results: % per student', v('--ac'), 1);
+  mk('#c2', 'line', m.sessions.map(s => s.t), m.sessions.map(avgOf), 'Class average over time (%)', v('--ac2'), 1);
+  const pass = L.rows.filter(r => pct(r.s, q) >= 50).length;
+  mk('#c3', 'doughnut', ['Passed', 'Below 50%'], [pass, L.rows.length - pass], 'Pass rate (latest)', [v('--ok'), v('--bad')], 0);
+  const qs = Array.from({ length: q }, (_, i) => i);
+  mk('#c4', 'bar', qs.map(i => 'Q' + (i + 1)), qs.map(i => Math.round(L.rows.reduce((a, r) => a + r.s[i], 0) / L.rows.length * 100)), '% correct per question (latest)', v('--ac'), 1);
+}
+</script>
+<script>/* ===== Teacher dashboard widgets =====
+   Results, weekly marking activity, top performers, up next, achievements and the upgrade card.
+   Everything is worked out from the saved modules (S.modules), so it matches what the backend will return. */
+const COLS = ['#93DD0C', '#2DD4BF', '#60A5FA', '#FBBF24', '#C4B5FD'];
+const fdate = d => new Date(d).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' });
+const initials = n => n.split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase() || '?';
+const passN = s => s.rows.filter(r => pct(r.s, s.q) >= 50).length;
+let actChart = null;
+
+function allSessions() {
+  return [].concat.apply([], (S.modules || []).map(m => m.sessions.map(s => Object.assign({ mod: m.name, mid: m.id }, s))))
+    .sort((a, b) => a.d < b.d ? -1 : 1);
+}
+function continueMod(m) {
+  $('#tMod').value = m.name; $('#memo').value = m.memo;
+  $('#markCard').scrollIntoView({ behavior: 'smooth' });
+  toast('Memo loaded. Add the new papers and mark away.');
+}
+
+function drawDash() {
+  const u = S.user, mods = S.modules || [], ses = allSessions(), q = ($('#tSearch').value || '').toLowerCase();
+  const A = ses.filter(s => !q || s.mod.toLowerCase().includes(q) || s.t.toLowerCase().includes(q));
+  const papers = ses.reduce((n, s) => n + s.rows.length, 0), last = ses[ses.length - 1];
+
+  $('#tBanner').textContent = ses.length
+    ? 'You\u2019ve marked ' + papers + ' paper' + (papers > 1 ? 's' : '') + ' across ' + mods.length + ' module' + (mods.length > 1 ? 's' : '') + '. Your latest class average is ' + avgOf(last) + '%. Start a new session and keep the momentum going.'
+    : 'No papers marked yet. Upload a memo and a few papers, and your progress will start showing up right here.';
+
+  $('#pAv').textContent = initials(u.name || 'T');
+  $('#pName').textContent = u.name || 'Teacher';
+  $('#pRole').textContent = (u.occ || 'Teacher') + (u.field ? ' \u00b7 ' + u.field : '');
+
+  $('#rList').innerHTML = A.length ? A.slice(-5).reverse().map((s, i) => {
+    const p = avgOf(s), c = COLS[i % 5];
+    return '<div class="rrow"><i style="background:' + c + '"></i><div><b>' + esc(s.mod) + '</b><small>' + esc(s.t) + ' &middot; ' + fdate(s.d) + '</small></div><div class="pbar"><i style="width:' + p + '%;background:' + c + '"></i></div><b>' + p + '%</b></div>';
+  }).join('') : '<p class="note">Your results will appear here once you save a marking session to a module.</p>';
+
+  $('#aTbl').innerHTML = A.length
+    ? '<thead><tr><th>Assessment</th><th>Module</th><th>Papers</th><th>Class average</th><th>Pass rate</th><th>Date</th><th></th></tr></thead><tbody>' +
+      A.slice(-8).reverse().map(s => '<tr><td>' + esc(s.t) + '</td><td>' + esc(s.mod) + '</td><td>' + s.rows.length + '</td><td>' + avgOf(s) + '%</td><td>' + Math.round(passN(s) / s.rows.length * 100) + '%</td><td>' + fdate(s.d) + '</td><td><button class="btn ghost sm" data-an2="' + s.mid + '">Graphs</button></td></tr>').join('') + '</tbody>'
+    : '<tbody><tr><td style="text-align:left" class="note">Nothing to show yet.</td></tr></tbody>';
+
+  const by = {};
+  ses.forEach(s => s.rows.forEach(r => { (by[r.name] = by[r.name] || []).push(pct(r.s, s.q)); }));
+  const top = Object.keys(by).map(n => ({ n, p: Math.round(by[n].reduce(add, 0) / by[n].length) })).sort((a, b) => b.p - a.p).slice(0, 5);
+  $('#tops').innerHTML = top.length
+    ? top.map((t, i) => '<div><span class="av" style="background:' + COLS[i % 5] + '">' + esc(initials(t.n)) + '</span>' + esc(t.n.split(' ')[0]) + '<br><b>' + t.p + '%</b></div>').join('')
+    : '<p class="note" style="margin:0">Your strongest students will show up here.</p>';
+
+  if (window.Chart) {
+    const days = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - 6 + i); return d; });
+    const on = d => ses.filter(s => new Date(s.d).toDateString() === d.toDateString());
+    if (actChart) actChart.destroy();
+    Chart.defaults.color = getComputedStyle(document.documentElement).getPropertyValue('--mute').trim();
+    actChart = new Chart($('#cAct'), {
+      type: 'bar',
+      data: { labels: days.map(d => d.toLocaleDateString('en-ZA', { weekday: 'short' })), datasets: [
+        { label: 'Papers marked', data: days.map(d => on(d).reduce((n, s) => n + s.rows.length, 0)), backgroundColor: '#93DD0C', borderRadius: 6 },
+        { label: 'Passed', data: days.map(d => on(d).reduce((n, s) => n + passN(s), 0)), backgroundColor: '#2DD4BF', borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: 'rgba(128,128,128,.2)' } }, x: { grid: { display: false } } }, plugins: { legend: { position: 'bottom' } } }
+    });
+  }
+
+  const items = [];
+  if (S.tdraft && (S.tdraft.memo || S.tdraft.stu || S.tdraft.mod)) items.push({ t: 'Continue your draft', s: S.tdraft.mod || 'Untitled draft', k: 'draft' });
+  mods.slice().sort((a, b) => a.sessions[a.sessions.length - 1].d < b.sessions[b.sessions.length - 1].d ? -1 : 1).slice(0, 3)
+    .forEach(m => items.push({ t: 'Mark new papers: ' + m.name, s: 'Last marked ' + fdate(m.sessions[m.sessions.length - 1].d), k: 'm' + m.id }));
+  $('#upNext').innerHTML = items.length
+    ? items.map(i => '<button class="pi" data-up="' + i.k + '"><i>\u270E</i><span><b>' + esc(i.t) + '</b><br><small class="note">' + esc(i.s) + '</small></span></button>').join('')
+    : '<p class="note">Nothing waiting. Enjoy the quiet.</p>';
+
+  $('#bigAvg').textContent = last ? avgOf(last) + '%' : '\u2013';
+  $('#bigSub').textContent = last ? last.mod + ' \u00b7 ' + last.t : 'Mark a paper to see it here';
+
+  const badges = [['First paper marked', papers >= 1], ['10 papers marked', papers >= 10], ['3 modules', mods.length >= 3], ['70%+ class average', !!last && avgOf(last) >= 70], ['Subscriber', !!S.sub]];
+  $('#ach').innerHTML = badges.map(b => '<span class="badge ' + (b[1] ? 'on' : 'off') + '">' + (b[1] ? '\u2713 ' : '') + b[0] + '</span>').join('');
+
+  $('#upg').innerHTML = S.sub
+    ? '<b>Pro plan active</b><br>Unlimited modules, papers and graphs.'
+    : 'Upgrade to Pro for unlimited modules and graphs.<br><button class="btn sm" id="upgBtn" style="margin-top:10px">Upgrade now</button>';
+}
+
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-an2]');
+  if (g) { const m = (S.modules || []).find(x => x.id === +g.dataset.an2); if (m) openAnalysis(m); }
+  const u = e.target.closest('[data-up]');
+  if (u) {
+    if (u.dataset.up === 'draft') $('#markCard').scrollIntoView({ behavior: 'smooth' });
+    else { const m = (S.modules || []).find(x => 'm' + x.id === u.dataset.up); if (m) continueMod(m); }
+  }
+  if (e.target.closest('#upgBtn')) openPay();
+});
+$('#tSearch').addEventListener('input', drawDash);
+$('#newSess').onclick = () => { $('#markCard').scrollIntoView({ behavior: 'smooth' }); $('#tMod').focus(); };
+$('#dOut').onclick = () => { S.user = null; save(); show('home'); };
+</script>
+<script>/* ===== Legal details used by the Privacy Policy and the "Your data" page =====
+   Fill in everything in [square brackets] before launch, then have a South African lawyer
+   review the policy. While any value still starts with "[", a draft notice shows on the policy page.
+   Your company must also register its Information Officer with the Information Regulator. */
+const POLICY_VERSION = '2026-10-28';
+
+const COMPANY = {
+  name: '[Your company name (Pty) Ltd]',
+  regNo: '[Company registration number]',
+  address: '[Physical address, South Africa]',
+  officer: '[Information Officer full name]',
+  officerEmail: '[privacy@yourdomain.co.za]',
+  officerPhone: '[Phone number]',
+  aiProvider: '[AI provider name and the country its servers are in]',
+  hosting: '[Hosting provider and region]',
+  retentionDays: 30,     // days we keep account data after someone deletes their account
+  backupDays: 90         // days until deleted data has also left our backups
+};
+
+/* The Information Regulator's details, taken from inforegulator.org.za (checked October 2026). */
+const REGULATOR = {
+  name: 'The Information Regulator (South Africa)',
+  address: 'JD House, 27 Stiemens Street, Braamfontein, Johannesburg, 2001',
+  complaints: 'POPIAComplaints@inforegulator.org.za',
+  enquiries: 'enquiries@inforegulator.org.za',
+  phone: '010 023 5200',
+  site: 'https://inforegulator.org.za'
+};
+</script>
+<script>/* ===== POPIA: policy text, sign-up consent, "Your data" tools, storage notice ===== */
+const C = k => esc(String(COMPANY[k]));
+const isDraft = () => Object.values(COMPANY).some(v => typeof v === 'string' && v.charAt(0) === '[');
+const pdate = () => new Date(POLICY_VERSION).toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
+
+function policyHTML() {
+  const S_ = [
+    ['1. Who we are and what this policy covers',
+      `<p><b>${C('name')}</b> (&ldquo;StudySense&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is the <b>responsible party</b> for the personal information you give us. Registration number: ${C('regNo')}. Address: ${C('address')}.</p>
+       <p>This policy explains, in plain language, how we collect, use, share and protect your personal information in line with the <b>Protection of Personal Information Act 4 of 2013 (POPIA)</b>. Our <b>Information Officer</b> is ${C('officer')}, reachable at ${C('officerEmail')} or ${C('officerPhone')}.</p>
+       <p>Version ${esc(POLICY_VERSION)}. Last updated ${pdate()}.</p>`],
+    ['2. What we collect',
+      `<ul><li><b>Account details:</b> your name, email address, role (student or teacher), occupation, field of study or subject, and institution.</li>
+       <li><b>What you upload or type:</b> notes, slides, memos, answer sheets and photos or scans. Teachers&rsquo; uploads can include learners&rsquo; names and marks.</li>
+       <li><b>What we create for you:</b> summaries, quizzes, mock exams, marks, spreadsheets, modules and drafts.</li>
+       <li><b>Talk rooms:</b> the articles and comments you post, with your name.</li>
+       <li><b>Usage and plan:</b> how many free summaries you have used and whether you are subscribed.</li>
+       <li><b>Payments:</b> handled by PayFast. We do not see or store your full card number.</li>
+       <li><b>Your consent choices</b> and the date you gave them.</li></ul>
+       <p>We do not knowingly collect <b>special personal information</b> (for example health, religion, race, biometric or criminal records). Please do not upload it, and please leave out ID numbers.</p>`],
+    ['3. Why we use it',
+      `<p>We use your information only for the purposes below, and for nothing unrelated without asking you first (POPIA conditions on purpose specification and further processing).</p>
+       <ul><li>To create and run your account, and to give you notes, quizzes, mock exams, marking and graphs. <i>Basis: to carry out our agreement with you.</i></li>
+       <li>To take payment for your subscription and keep records the law requires.</li>
+       <li>To run talk rooms and keep them safe, including removing harmful posts.</li>
+       <li>To protect StudySense against fraud and abuse, and to fix problems.</li>
+       <li>To send you study tips and product news <b>only if you opt in</b>.</li></ul>
+       <p>Where we rely on your <b>consent</b>, you can withdraw it at any time. Withdrawing does not affect what we did before, and some features may stop working.</p>`],
+    ['4. If you are a teacher or lecturer',
+      `<p>When you upload learners&rsquo; papers or marks, you are responsible for having the authority to do so, and for telling learners (and parents or guardians of minors) how their work is used. Usually your school, college or university is the responsible party for that information, and StudySense processes it for you as an <b>operator</b>, only to provide the marking service. We keep it confidential and do not use it for our own purposes.</p>`],
+    ['5. If you are under 18',
+      `<p>POPIA says information about a child (anyone under 18) may only be processed with the consent of a competent person, such as a parent or guardian. If you are under 18, we ask for your parent or guardian&rsquo;s email and consent when you sign up. Please never share your phone number, address, school name or ID number in talk rooms. A parent or guardian can ask us at any time to see, correct or delete a child&rsquo;s information.</p>`],
+    ['6. AI and automated marking',
+      `<p>To make notes and marks we send the text you upload to an AI service provider (${C('aiProvider')}). We choose providers that let us stop customer content being used to train their models, and we will tell you if that changes.</p>
+       <p>Marks and summaries are suggestions. A teacher can change any mark, and no decision that has a legal or significant effect on a person is made by automation alone (POPIA section 71). If you think an automated result is wrong, tell us and a person will look at it.</p>`],
+    ['7. Who we share it with',
+      `<p>We never sell your personal information. We share it only with service providers (&ldquo;operators&rdquo;) who process it for us under written agreements that require them to keep it secure and confidential: hosting (${C('hosting')}), the AI provider above, PayFast for payments, and an email service for account messages. We may also share information where the law requires it, or to protect rights and safety.</p>`],
+    ['8. Sending information outside South Africa',
+      `<p>Some of our providers store or process information outside South Africa. We only send personal information to another country if the recipient is bound by a law, binding corporate rules or an agreement that gives protection similar to POPIA, or if you consent, or if it is necessary to carry out our agreement with you (POPIA section 72).</p>`],
+    ['9. How long we keep it',
+      `<p>We keep your information only as long as we need it for the purposes above (POPIA section 14). Your content stays until you delete it or your account. After you delete your account we remove it within ${C('retentionDays')} days, and it leaves our backups within ${C('backupDays')} days. We keep billing records for as long as the law requires, for example for tax.</p>`],
+    ['10. How we keep it safe',
+      `<p>We use reasonable technical and organisational measures: encryption in transit, access controls, separate accounts for our team, and regular reviews. If we have reason to believe your information has been accessed by an unauthorised person, we will tell the Information Regulator and the people affected as soon as reasonably possible (POPIA section 22).</p>`],
+    ['11. Your rights',
+      `<p>Under POPIA you have the right to:</p>
+       <ul><li><b>Know</b> what we hold and why, and <b>ask for a copy</b> (section 23).</li>
+       <li><b>Correct or delete</b> information that is wrong, out of date or no longer needed (section 24).</li>
+       <li><b>Object</b> to us processing your information (section 11(3)).</li>
+       <li><b>Withdraw consent</b> at any time.</li>
+       <li><b>Opt out of direct marketing</b> (section 69).</li>
+       <li><b>Not be subject to a decision made only by automated means</b> (section 71).</li>
+       <li><b>Complain</b> to the Information Regulator, and take civil action.</li></ul>
+       <p>Use the <b>Your data</b> page to download or delete your data, or send a request to our Information Officer. We may ask you to confirm who you are first, and we aim to reply within 30 days.</p>
+       <p><button class="btn sm" data-go="mydata">Go to Your data</button></p>`],
+    ['12. Marketing',
+      `<p>We send marketing only to people who opt in (an unticked box at sign-up). Every message tells you how to stop, and you can switch it off any time on the Your data page.</p>`],
+    ['13. Browser storage and cookies',
+      `<p>StudySense stores a few things in your browser so it works: your session and saved work (<code>ss</code>), your theme (<code>ss-theme</code>) and whether you have seen our storage notice (<code>ss-notice</code>). These are essential. We do not use advertising or cross-site tracking cookies. Clearing your browser data removes them.</p>`],
+    ['14. Complaints',
+      `<p>Please talk to our Information Officer first so we can put things right. You also have the right to complain to the Information Regulator:</p>
+       <p><b>${esc(REGULATOR.name)}</b><br>${esc(REGULATOR.address)}<br>Complaints: <a href="mailto:${REGULATOR.complaints}">${REGULATOR.complaints}</a><br>Enquiries: <a href="mailto:${REGULATOR.enquiries}">${REGULATOR.enquiries}</a> &middot; ${esc(REGULATOR.phone)}<br><a href="${REGULATOR.site}" target="_blank" rel="noopener">${REGULATOR.site.replace('https://', '')}</a></p>`],
+    ['15. Changes to this policy',
+      `<p>If we change this policy in a way that matters, we will tell you in the app or by email before it takes effect. The version and date at the top always show the latest one.</p>`]
+  ];
+  return S_.map(s => '<section class="pol"><h3>' + s[0] + '</h3>' + s[1] + '</section>').join('');
+}
+function renderPolicy() {
+  $('#policy').innerHTML = (isDraft() ? '<div class="card devnote"><b>Draft for developers:</b> fill in the details in square brackets in <code>js/config.js</code>, and have a South African lawyer review this policy before launch. This message disappears once they are filled in.</div>' : '') + policyHTML();
+}
+
+/* ---------- consent at sign-up ---------- */
+const needsConsent = () => up || !S.consent;
+function syncConsent() { $('#consent').style.display = needsConsent() ? 'block' : 'none'; }
+$('#swap').addEventListener('click', syncConsent);
+$('#cMinor').onchange = () => { $('#minorBox').style.display = $('#cMinor').checked ? 'block' : 'none'; };
+function consentGate() {
+  if (!needsConsent()) return true;
+  if (!$('#cOk').checked) { toast('Please tick the consent box to continue. POPIA asks us to get it first.'); return false; }
+  if ($('#cMinor').checked && (!$('#gOk').checked || !/\S+@\S+\.\S+/.test($('#gEm').value))) {
+    toast('Under 18? We need your parent or guardian\u2019s email and consent first.'); return false;
+  }
+  S.consent = { v: POLICY_VERSION, at: new Date().toISOString(), marketing: $('#cMkt').checked, minor: $('#cMinor').checked, guardian: $('#cMinor').checked ? $('#gEm').value.trim() : '' };
+  return true;
+}
+['#google', '#go'].forEach(id => { const orig = $(id).onclick; $(id).onclick = e => { if (consentGate()) orig(e); }; });
+
+/* ---------- Your data page ---------- */
+function renderMyData() {
+  $('#mkt').checked = !!(S.consent && S.consent.marketing);
+  $('#rqEm').value = (S.user && S.user.email) || '';
+  $('#contacts').innerHTML = '<div class="two"><div class="card"><b>Our Information Officer</b><p class="note">' + C('officer') + '<br>' + C('officerEmail') + '<br>' + C('officerPhone') + '</p></div><div class="card"><b>' + esc(REGULATOR.name) + '</b><p class="note">' + esc(REGULATOR.address) + '<br>Complaints: ' + REGULATOR.complaints + '<br>' + esc(REGULATOR.phone) + '</p></div></div>';
+}
+$('#mkt').onchange = () => {
+  S.consent = S.consent || { v: POLICY_VERSION, at: new Date().toISOString(), minor: false, guardian: '' };
+  S.consent.marketing = $('#mkt').checked; save();
+  toast($('#mkt').checked ? 'Thanks! We\u2019ll send the occasional study tip.' : 'Done. No more marketing from us.');
+};
+$('#dlMy').onclick = () => {
+  API.exportMe().then(d => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' }));
+    a.download = 'my-studysense-data.json'; a.click();
+    toast('Your data is downloading.');
+  }).catch(() => toast('Hmm, we couldn\u2019t prepare your data. Please try again or email our Information Officer.'));
+};
+$('#delMy').onclick = () => {
+  if (!confirm('Delete everything StudySense holds about you? This can\u2019t be undone.')) return;
+  API.deleteMe().then(() => {
+    try { localStorage.removeItem('ss'); } catch (e) { }
+    Object.keys(S).forEach(k => delete S[k]);
+    Object.assign(S, { n: 0, user: null, sub: false, hist: [], marks: [] });
+    show('home'); toast('All done. Your data has been deleted.');
+  }).catch(() => toast('We couldn\u2019t finish deleting. Please email our Information Officer and we\u2019ll do it for you.'));
+};
+$('#rqSend').onclick = () => {
+  const type = $('#rqType').value, text = $('#rqText').value.trim(), em = $('#rqEm').value.trim();
+  if (!/\S+@\S+\.\S+/.test(em)) { toast('Add your email so we can reply.'); return; }
+  const body = 'Request: ' + type + '\nFrom: ' + em + '\n\n' + text + '\n\n(Sent from the StudySense "Your data" page, policy version ' + POLICY_VERSION + ')';
+  if (API.base) { API.call('/v1/privacy/requests', { type, details: text, email: em }).then(() => toast('Request sent. We\u2019ll reply soon.')).catch(() => toast('We couldn\u2019t send that. Please try again.')); return; }
+  location.href = 'mailto:' + COMPANY.officerEmail + '?subject=' + encodeURIComponent('POPIA request: ' + type) + '&body=' + encodeURIComponent(body);
+};
+
+/* ---------- storage notice ---------- */
+let seen = false; try { seen = !!localStorage.getItem('ss-notice'); } catch (e) { }
+if (!seen) $('#notice').style.display = 'flex';
+$('#noticeOk').onclick = () => { $('#notice').style.display = 'none'; try { localStorage.setItem('ss-notice', '1'); } catch (e) { } };
+
+/* ---------- small reminders where people upload ---------- */
+$('#guest .chat').insertAdjacentHTML('afterend', '<p class="note" style="margin-top:10px">Only upload your own notes or material you may share, and leave out other people\u2019s personal details. <button class="lnk2" data-go="privacy">How we protect your data</button></p>');
+</script>
+<script>/* ===== Friendly touches and app start ===== */
+const first = n => (n || 'friend').split(' ')[0];
+function greet() { const h = new Date().getHours(); return h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening'; }
+
+const LOADING = ['Reading your notes\u2026', 'Finding what really matters\u2026', 'Putting it all together\u2026', 'Almost there\u2026'];
+let lmi = 0;
+function loadMsg() { return LOADING[lmi++ % LOADING.length]; }
+
+function actionsHTML() { return '<div class="acts"><button data-act="copy">Copy</button><button data-act="read">Read aloud</button><button data-act="dl">Download</button></div>'; }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const m = b.closest('.m'), bar = m.querySelector('.acts');
+  bar.style.display = 'none'; const t = m.innerText; bar.style.display = '';
+  if (b.dataset.act === 'copy') {
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast('Copied. Go ace it!')).catch(() => toast('Couldn\u2019t copy. Select the text and copy it by hand.'));
+  } else if (b.dataset.act === 'dl') {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([t], { type: 'text/plain' })); a.download = 'studysense-notes.txt'; a.click();
+  } else if ('speechSynthesis' in window) {
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); return; }
+    speechSynthesis.speak(new SpeechSynthesisUtterance(t));
+  } else toast('Your browser can\u2019t read aloud.');
+});
+
+function openPaySlots() {
+  openPay();
+  $('#pT').textContent = 'Your free module slots are full';
+  $('#pD').textContent = 'Subscribe for R50 a month and keep as many modules, papers and graphs as you like.';
+}
+
+/* Called every time a page is shown. */
+function afterShow(v) {
+  document.body.classList.toggle('on-home', v === 'home');
+  document.body.classList.toggle('on-dash', v === 'teacher');
+  if (v === 'privacy') renderPolicy();
+  if (v === 'mydata') renderMyData();
+  if (v === 'signin') syncConsent();
+  const nb = document.querySelector('#nav [data-go="guest"]');
+  if (nb) nb.textContent = S.user ? 'Notes' : 'Try free';
+  if (v === 'guest') {
+    $('#gT').textContent = S.user ? 'Let\u2019s make some notes, ' + first(S.user.name) : 'Try StudySense free';
+    $('#gS').textContent = S.user ? 'Paste anything or drop in files. There\u2019s no length limit.' : 'Paste your notes or drop in a file. Guests get 5 free summaries, then it\u2019s time to sign in and subscribe.';
+  }
+}
+
+/* Light and dark theme. */
+function setTheme(t) {
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('ss-theme', t); } catch (e) { }
+  document.querySelectorAll('[data-theme-toggle]').forEach(b => { b.textContent = t === 'dark' ? 'Light mode' : 'Dark mode'; });
+}
+let savedTheme = null; try { savedTheme = localStorage.getItem('ss-theme'); } catch (e) { }
+setTheme(savedTheme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+document.addEventListener('click', e => { if (e.target.closest('[data-theme-toggle]')) setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); });
+
+/* Shortcuts: "/" jumps to the notes box, Esc closes pop-ups. */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') $('#pay').classList.remove('on');
+  const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+  if (e.key === '/' && !typing) { e.preventDefault(); show('guest'); setTimeout(() => $('#inp').focus(), 50); }
+});
+
+/* Gentle fade-in as sections scroll into view. */
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: 0.1 }) : null;
+document.querySelectorAll('#home .card, #home .stat, #home details').forEach(el => { el.classList.add('reveal'); io ? io.observe(el) : el.classList.add('in'); });
+
+/* Smooth scrolling for menu buttons, and the little sound wave on the home page. */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-scroll]'); if (!b) return;
+  const el = document.getElementById(b.dataset.scroll); if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const side = b.closest('.side nav'); if (side) { side.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); }
+});
+$('#wave').innerHTML = Array.from({ length: 34 }, (_, i) => '<i' + (i === 22 ? ' class="hot"' : '') + ' style="height:' + Math.round(10 + Math.abs(Math.sin(i * 1.7)) * 44) + 'px"></i>').join('');
+
+/* Start. */
+const h0 = location.hash.slice(1);
+if (h0 && document.getElementById(h0)) show(h0); else show('home');
+</script>
+</body>
+</html>

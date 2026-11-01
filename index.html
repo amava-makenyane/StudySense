@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudySense | AI study summaries &amp; marking</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<meta name="description" content="StudySense turns your notes into summaries, quizzes and mock exams, and helps teachers mark papers in minutes.">
+<meta name="theme-color" content="#0A1024">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-70 -60 523 450'%3E%3Crect x='-70' y='-60' width='523' height='450' rx='100' fill='white'/%3E%3Cpath d='M0 142L191 235 383 142V237L191 330 0 237z' fill='%230A1024'/%3E%3Cpath d='M64.4 137A127 127 0 1 1 317.6 137L191 199z' fill='%2393DD0C'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header><div class="wrap bar">
+  <button class="logo" data-go="home"><i></i>Study Sense</button>
+  <nav aria-label="Main" id="nav">
+    <button data-go="home">Home</button><button data-go="guest">Try free</button><button data-go="rooms">Talk rooms</button><button data-go="pricing">Pricing</button><button data-go="dash">Dashboard</button>
+  </nav>
+  <button class="btn ghost sm" id="themeBtn" data-theme-toggle>Light mode</button><button class="btn sm" id="authBtn">Sign in</button>
+</div></header>
+
+<main>
+<!-- HOME -->
+<section class="view on" id="home">
+ <div class="lcard">
+  <div class="lnav">
+    <span class="slogo"><i class="mark"></i>Study Sense</span>
+    <nav aria-label="Home sections"><button data-scroll="how">How it works</button><button data-scroll="usecases">Use cases</button><button data-scroll="features">Features</button><button data-scroll="pricing-sec">Pricing</button><button data-scroll="faq-sec">FAQ</button></nav>
+    <div class="r"><button class="rbtn" data-go="signin" aria-label="Sign in"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5M15 12H3M15 4h4a2 2 0 012 2v12a2 2 0 01-2 2h-4"/></svg></button><button class="rbtn" data-go="profile" aria-label="Profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button></div>
+  </div>
+  <div class="lhero">
+    <div>
+      <h1><span class="g">AI notes</span><br>and marking,<br>made simple</h1>
+      <p class="lead">StudySense reads your slides, notes and papers, then builds summaries, quizzes and mock exams. Teachers get their marking done in minutes, not weekends.</p>
+      <div class="row"><button class="btn" data-go="guest"><span class="go">&rarr;</span>Start for free</button><button class="btn ghost" data-go="signin">Sign in</button></div>
+      <div class="dots"><span>5 free summaries</span><span>No credit card needed</span><span>Cancel anytime</span></div>
+    </div>
+    <div class="lvis" aria-hidden="true">
+      <div class="badge2">&#9733; Made in South Africa</div>
+      <div class="tile t1">T<small>Student</small></div><div class="tile t2">S<small>Teacher</small></div><div class="tile t3">N<small>Student</small></div><div class="tile t4">L<small>Lecturer</small></div>
+      <div class="phone"><h4>Photosynthesis notes</h4><div class="wave" id="wave"></div><div class="timer"><span>00:42</span><span>&#10022; Summarising&hellip;</span></div>
+        <div class="pbox"><p><b>Summary ready</b><br><small>04:34</small></p><p>The light stage makes ATP and NADPH. The Calvin cycle uses them to build glucose.</p><p><small>Next: quiz and mock exam</small></p></div></div>
+      <div class="float"><div class="who"><span class="av" style="background:#0A1024;color:#fff">T</span><b>Thandi</b><span class="chip2">Key point</span></div>RuBisCO fixes carbon dioxide in the stroma, <span class="fade">and</span></div>
+    </div>
+  </div>
+  <div class="promo">Study free with 5 summaries, then R50 a month for unlimited notes and marking.<button data-scroll="pricing-sec">See pricing</button></div>
+  <div class="llogos" aria-label="Made for students at"><span>UKZN</span><span>UCT</span><span>Wits</span><span>UNISA</span><span>Stellenbosch</span><span>IIE Rosebank</span></div>
+  <div class="lnote">Made for South African students. StudySense is not affiliated with or endorsed by any school, college or university.</div>
+  <div class="wrap">
+    <section class="blk" id="try" style="padding-bottom:0"><span class="eyebrow">Try it now</span><h2>Drop a file and see what happens</h2>
+      <div class="dz" id="dz" tabindex="0" role="button" aria-label="Upload files"><b>Drag and drop files here</b> or <u>choose files</u> from your device.<small>PDF, Word, PowerPoint, Excel, text files, even photos of your notes.</small><input type="file" id="hFile" hidden multiple></div>
+      <div class="modebar" style="border:0;padding:6px 0"></div></section>
+    <section class="blk" id="how"><span class="eyebrow">How it works</span><h2>Three steps, no late nights</h2>
+      <div class="grid"><div class="card"><span class="num">Step 1</span><h3>Drop in your files</h3><p>Slides, notes, Word, Excel or a photo of a page. Paste text if that&rsquo;s quicker.</p></div><div class="card"><span class="num">Step 2</span><h3>Pick how you want it</h3><p>Simple notes, slides, exam notes, a quiz or a full mock exam.</p></div><div class="card"><span class="num">Step 3</span><h3>Study or mark</h3><p>Students revise and join talk rooms. Teachers mark papers and track progress.</p></div></div></section>
+    <section class="blk" id="usecases" style="padding-top:0"><span class="eyebrow">Built for your course</span><h2>Pick your field and try a sample</h2>
+      <div class="fl" id="areas" aria-label="Fields of study"></div>
+      <div class="card"><p id="sampleTxt" style="margin:0 0 14px"></p><button class="btn" id="useSample">Make notes from this sample</button></div></section>
+    <section class="blk" id="features" style="padding-top:0"><div class="grid">
+      <div class="card"><span class="num">Your material</span><h3>Notes from what you upload</h3><p>StudySense works from your own slides and notes, so the summary matches your course.</p></div>
+      <div class="card"><span class="num">Practice</span><h3>No surprises on exam day</h3><p>Turn your notes into quizzes and full mock exams with a memo.</p></div>
+      <div class="card"><span class="num">Community</span><h3>Study with people like you</h3><p>Join talk rooms for your occupation and subject, post articles and comment.</p></div></div></section>
+    
+    <section class="blk" id="pricing-sec" style="padding-top:0"><span class="eyebrow">Simple pricing</span><h2>Start free, subscribe when you&rsquo;re ready</h2><div class="grid" id="plans"></div></section>
+    <section class="blk" id="faq-sec" style="padding-top:0"><span class="eyebrow">Questions</span><h2>Frequently asked questions</h2><div id="faq"></div></section>
+  </div>
+</div></section>
+
+<!-- GUEST -->
+<section class="view" id="guest"><div class="wrap">
+  <h2 id="gT">Try StudySense free</h2><p class="lead" id="gS" style="font-size:16px">Paste your notes below. Guests get 5 free summaries, then it&rsquo;s time to sign in and subscribe.</p>
+  <div class="chat" style="margin-top:18px">
+    <div class="chat-top"><span>StudySense AI</span><span id="left"></span></div>
+    <div class="modebar"></div><div class="msgs" id="msgs"></div><div class="fchips" id="gFiles"></div>
+    <div class="comp">
+      <button class="btn ghost sm" id="attach" aria-label="Upload any file or document">Upload</button><input type="file" id="file" hidden multiple>
+      <textarea id="inp" rows="1" placeholder="Paste your notes or a chapter here&hellip;" aria-label="Your notes"></textarea>
+      <button class="btn" id="send">Summarise</button>
+    </div>
+  </div></div></section>
+
+<!-- SIGN IN -->
+<section class="view" id="signin"><div class="wrap auth">
+  <h2 id="aT">Sign in</h2><p class="note">Demo only: no real account is created.</p>
+  <div class="consent" id="consent">
+    <label class="chk"><input type="checkbox" id="cOk"><span>I have read the <button class="lnk2" data-go="privacy">Privacy Policy</button> and I consent to StudySense processing my personal information as described.</span></label>
+    <label class="chk"><input type="checkbox" id="cMkt"><span>Send me study tips and product news. This is optional and I can opt out any time.</span></label>
+    <label class="chk"><input type="checkbox" id="cMinor"><span>I am under 18</span></label>
+    <div id="minorBox" style="display:none"><label for="gEm">Parent or guardian email</label><input id="gEm" type="email" autocomplete="off"><label class="chk"><input type="checkbox" id="gOk"><span>My parent or guardian has read the Privacy Policy and consents to me using StudySense.</span></label></div>
+  </div>
+  <button class="gbtn" id="google"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 010-9.4l-7.9-6.1a24 24 0 000 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continue with Google</button>
+  <div class="or">or use your email</div>
+  <div id="nameWrap"><label for="nm">Full name</label><input id="nm" autocomplete="name"></div>
+  <label for="em">Email</label><input id="em" type="email" autocomplete="email">
+  <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
+  <div class="row"><button class="btn" id="go">Continue</button><button class="btn ghost" id="swap">Create an account</button></div>
+</div></section>
+
+<!-- ROLE -->
+<section class="view" id="role"><div class="wrap">
+  <h2>How will you use StudySense?</h2><p class="lead" style="font-size:16px">You can change this later in your profile.</p>
+  <div class="pick" style="margin-top:20px">
+    <button data-r="student"><h3>I&rsquo;m a student</h3><p class="note">Summaries, predicted questions and study rooms.</p></button>
+    <button data-r="teacher"><h3>I&rsquo;m a teacher or lecturer</h3><p class="note">Upload a memo, mark papers and keep a marking history.</p></button>
+  </div></div></section>
+
+<!-- PROFILE -->
+<section class="view" id="profile"><div class="wrap" style="max-width:640px">
+  <h2>Your profile</h2>
+  <label for="pn">Name</label><input id="pn">
+  <label for="pe">Email</label><input id="pe" disabled>
+  <div class="two"><div><label for="pr">Role</label><select id="pr"><option value="student">Student</option><option value="teacher">Teacher / lecturer</option></select></div>
+  <div><label for="po">Occupation</label><select id="po"></select></div></div>
+  <div class="two"><div><label for="pf">Field of study or subject</label><select id="pf"></select></div>
+  <div><label for="pi">School or institution</label><input id="pi" placeholder="e.g. IIE Rosebank College"></div></div>
+  <div class="card" style="margin-top:18px"><b>Plan: <span id="plan"></span></b><p class="note" id="planNote"></p></div>
+  <div class="row"><button class="btn" id="saveP">Save profile</button><button class="btn ghost" id="out">Sign out</button></div>
+  <p class="note"><button class="lnk2" data-go="mydata">Manage my data and POPIA rights</button> &middot; <button class="lnk2" data-go="privacy">Privacy Policy</button></p>
+</div></section>
+
+<!-- STUDENT -->
+<section class="view" id="student"><div class="wrap">
+  <h2 id="sHi"></h2><p class="lead" style="font-size:16px">Here&rsquo;s what people in your talk rooms are sharing today.</p>
+  <div class="row"><button class="btn" data-go="guest">Make notes</button><button class="btn ghost" data-go="rooms">Post an article</button></div>
+  <div class="sfeed" id="sFeed"></div>
+</div></section>
+
+<!-- TEACHER -->
+<section class="view" id="teacher"><div class="dash">
+  <aside class="side">
+    <div class="slogo"><i class="mark"></i>Study Sense</div>
+    <nav aria-label="Teacher menu">
+      <button class="on" data-scroll="dTop"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Dashboard</button>
+      <button data-scroll="markCard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg>Mark papers</button>
+      <button data-scroll="modsSec"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg>Modules</button>
+      <button data-go="guest"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12l4 4v12H4zM8 12h8M8 16h5"/></svg>Notes</button>
+      <button data-go="rooms"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.7 7L4 20l1.1-4.6A8 8 0 1121 12z"/></svg>Talk rooms</button>
+      <button data-go="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 00-2-1.2L14 3h-4l-.6 2.7a7 7 0 00-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 005 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 002 1.2L10 21h4l.6-2.7a7 7 0 002-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></svg>Settings</button>
+      <button id="dOut"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5M15 12H3M15 4h4a2 2 0 012 2v12a2 2 0 01-2 2h-4"/></svg>Sign out</button>
+    </nav>
+    <div class="upg" id="upg"></div>
+  </aside>
+
+  <div class="dmain" id="dTop">
+    <div class="dbar"><h2>Dashboard</h2><div class="dtools"><input id="tSearch" type="search" placeholder="Search results" aria-label="Search results"><button class="btn ghost sm" data-theme-toggle>Light mode</button></div></div>
+    <div class="banner"><div><h3 id="tHi"></h3><p id="tBanner"></p><button class="btn sm" id="newSess">Start a new marking session</button></div>
+      <svg width="120" height="110" viewBox="0 0 120 110" aria-hidden="true"><rect x="22" y="14" width="70" height="86" rx="8" fill="#fff" stroke="#0A1024" stroke-width="3"/><path d="M36 38l6 6 12-12M36 62l6 6 12-12" stroke="#059669" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M66 38h16M66 62h16" stroke="#C9C4D8" stroke-width="4" stroke-linecap="round"/><circle cx="96" cy="84" r="16" fill="#93DD0C"/><path d="M89 84l5 5 9-10" stroke="#0A1024" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="kp"><div class="card"><b id="t1">0</b><span class="note">Papers marked</span></div><div class="card"><b id="t2">&ndash;</b><span class="note">Latest class average</span></div><div class="card"><b id="t3">0</b><span class="note" id="t3n">Modules</span></div></div>
+
+    <div class="dgrid">
+      <div class="card"><div class="sheet-head"><h3 style="margin:0">Results</h3><button class="btn ghost sm" data-scroll="modsSec">More</button></div><div id="rList"></div></div>
+      <div>
+        <div class="card"><h3 style="margin-top:0">Marking activity, last 7 days</h3><div class="cv" style="height:200px"><canvas id="cAct"></canvas></div></div>
+        <div class="card" style="margin-top:16px"><h3 style="margin-top:0">Top performers</h3><div class="avs" id="tops"></div></div>
+      </div>
+    </div>
+    <div class="card"><h3 style="margin-top:0">Recent assessments</h3><div class="tbl"><table id="aTbl"></table></div></div>
+
+    <h3 class="sec">Mark papers</h3>
+    <p class="note" id="tSub" style="margin-top:0"></p>
+    <div class="card" id="markCard">
+      <div class="sheet-head"><h3 style="margin:0">New marking session</h3><button class="btn ghost sm" id="tSample">Try with sample data</button></div>
+      <p class="note" style="margin:8px 0 0">Student papers contain personal information. Only upload papers you are authorised to mark, and leave out ID numbers and other sensitive details. <button class="lnk2" data-go="privacy">How we protect it</button></p>
+      <div class="two">
+        <div><label for="tMod">Module</label><input id="tMod" list="modList" placeholder="e.g. Life Sciences Grade 11"><datalist id="modList"></datalist></div>
+        <div><label for="tTitle">Assessment name</label><input id="tTitle" placeholder="e.g. Test 2"></div>
+      </div>
+      <div class="two">
+        <div>
+          <label for="memo">Memo (one answer per line)</label>
+          <textarea id="memo" rows="7" placeholder="Type the memo, paste it, or upload it. You can also drop a file onto this box."></textarea>
+          <div class="row" style="margin:8px 0"><button class="btn ghost sm" id="upMemo">Upload memo</button><button class="btn ghost sm" id="scanMemo">Scan memo</button></div>
+          <input type="file" id="fMemo" hidden multiple><input type="file" id="fMemoScan" hidden accept="image/*" capture="environment">
+          <div class="fchips" id="memoFiles" style="padding:0"></div>
+        </div>
+        <div>
+          <label>Student papers</label>
+          <div class="dz small" id="paperDz">Drop answer sheets here. Word, PDF, Excel or photos of scanned papers all work. One file per student.</div>
+          <div class="row" style="margin:8px 0"><button class="btn ghost sm" id="upPapers">Upload answer sheets</button><button class="btn ghost sm" id="scanPaper">Scan with camera</button></div>
+          <input type="file" id="fPapers" hidden multiple><input type="file" id="fPaperScan" hidden accept="image/*" capture="environment">
+          <div class="note" id="paperNote"></div>
+          <div id="paperList"></div>
+        </div>
+      </div>
+      <details><summary class="note" style="cursor:pointer">Or type one student&rsquo;s answers</summary>
+        <label for="tName">Student name</label><input id="tName" placeholder="e.g. Thandi Mokoena">
+        <label for="stu">Answers (one per line)</label><textarea id="stu" rows="5"></textarea>
+      </details>
+      <div class="row"><button class="btn" id="mark">Mark papers</button><span class="note" id="draftNote"></span></div>
+    </div>
+
+    <div class="card" id="sheetCard" style="display:none;margin-top:16px">
+      <div class="sheet-head"><h3 style="margin:0">Marking summary</h3>
+        <div class="row"><button class="btn ghost sm" id="dlXlsx">Download Excel</button><button class="btn ghost sm" id="dlCsv">Download CSV</button><button class="btn sm" id="saveMod">Save to module</button></div></div>
+      <p id="sumLine" style="margin:10px 0 0"></p>
+      <div class="tbl"><table id="tbl"></table></div>
+      <p class="note">Tip: tap any mark to change it. The totals update straight away.</p>
+    </div>
+
+    <h3 class="sec" id="modsSec">Your modules</h3>
+    <div class="note" id="slots"></div>
+    <div class="grid" id="mods"></div>
+    <div class="card" id="analysis" style="display:none;margin-top:16px">
+      <div class="sheet-head"><h3 id="anT" style="margin:0"></h3><button class="btn ghost sm" id="anX">Close</button></div>
+      <div class="two charts"><div class="cv"><canvas id="c1"></canvas></div><div class="cv"><canvas id="c2"></canvas></div><div class="cv"><canvas id="c3"></canvas></div><div class="cv"><canvas id="c4"></canvas></div></div>
+    </div>
+  </div>
+
+  <aside class="right">
+    <div class="prof"><div class="av big" id="pAv"></div><b id="pName"></b><span class="note" id="pRole"></span></div>
+    <h4>Up next</h4><div id="upNext"></div>
+    <div class="bal"><small>LATEST CLASS AVERAGE</small><b id="bigAvg">&ndash;</b><span id="bigSub"></span></div>
+    <div class="card"><h4 style="margin-top:0">Achievements</h4><div id="ach"></div></div>
+  </aside>
+</div></section>
+
+<!-- ROOMS -->
+<section class="view" id="rooms"><div class="wrap">
+  <h2>Talk rooms</h2><p class="lead" style="font-size:16px">Meet people by occupation and by what they study.</p>
+  <div class="fl" id="f1" aria-label="Filter by occupation"></div><div class="fl" id="f2" aria-label="Filter by subject"></div>
+  <div class="rooms"><div class="rl" id="rl"></div>
+    <div><div class="card"><b id="rt">Pick a room</b><span class="note" id="rm"></span><div id="newArt" style="display:none"><label for="at">Post an article</label><input id="at" placeholder="Article title"><label for="ab">Your article</label><textarea id="ab" rows="4" placeholder="Share what you’ve learned, a study tip or a summary…"></textarea><div class="row" style="margin-bottom:0"><button class="btn" id="apost">Post article</button></div></div></div><div id="feed"></div>
+    </div></div>
+</div></section>
+
+<!-- PRIVACY -->
+<section class="view" id="privacy"><div class="wrap legal">
+  <h2>Privacy Policy and POPIA notice</h2>
+  <div id="policy"></div>
+</div></section>
+
+<!-- MY DATA -->
+<section class="view" id="mydata"><div class="wrap legal">
+  <h2>Your data and POPIA rights</h2>
+  <p class="lead" style="font-size:16px">It&rsquo;s your information, so you&rsquo;re in charge of it. Download it, delete it, or ask us anything.</p>
+  <div class="grid">
+    <div class="card"><h3>Download my data</h3><p>Get a copy of what StudySense holds about you as a file.</p><p><button class="btn sm" id="dlMy">Download</button></p></div>
+    <div class="card"><h3>Marketing emails</h3><label class="chk" style="margin:0"><input type="checkbox" id="mkt"><span>Send me study tips and product news</span></label></div>
+    <div class="card"><h3>Delete my data</h3><p>Remove your account, notes, modules and posts. This can&rsquo;t be undone.</p><p><button class="btn ghost sm" id="delMy">Delete everything</button></p></div>
+  </div>
+  <h3 class="sec">Send a request to our Information Officer</h3>
+  <div class="card">
+    <label for="rqType">What would you like to do?</label>
+    <select id="rqType"><option>See the information you hold about me</option><option>Correct my information</option><option>Delete my information</option><option>Object to how my information is used</option><option>Withdraw my consent</option><option>Ask about a child&rsquo;s information (parent or guardian)</option><option>Report a privacy concern</option></select>
+    <label for="rqText">Details</label><textarea id="rqText" rows="4" placeholder="Tell us what you need. Please don&rsquo;t include ID numbers or passwords."></textarea>
+    <label for="rqEm">Your email</label><input id="rqEm" type="email">
+    <div class="row"><button class="btn" id="rqSend">Send request</button></div>
+    <p class="note">We may ask you to confirm who you are before we share or delete anything. We aim to reply within 30 days.</p>
+  </div>
+  <h3 class="sec">Contacts</h3><div id="contacts"></div>
+</div></section>
+
+<!-- PRICING -->
+<section class="view" id="pricing"><div class="wrap"><h2>Pricing</h2><div class="grid" id="plans2"></div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><b>StudySense</b><p>AI notes, quizzes, mock exams and marking for South African students and teachers.</p></div>
+    <div><b>Study tools</b><button class="lnk" data-go="guest">Try free</button><button class="lnk" data-go="student">Student dashboard</button><button class="lnk" data-go="teacher">Teacher dashboard</button></div>
+    <div><b>Community</b><button class="lnk" data-go="rooms">Talk rooms</button></div>
+    <div><b>Account</b><button class="lnk" data-go="signin">Sign in</button><button class="lnk" data-go="profile">Profile</button><button class="lnk" data-go="pricing">Pricing</button><button class="lnk" data-go="privacy">Privacy Policy</button><button class="lnk" data-go="mydata">Your data (POPIA)</button></div>
+  </div>
+  <div class="fbot"><a class="nw" href="https://thenextwebstudio.lovable.app/" target="_blank" rel="noopener" aria-label="Designed and built by The NextWeb Studio"><svg class="nwm" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 3L57 30 30 57 3 30z" fill="none" stroke="#B2B5BA" stroke-width="1.6"/><path d="M30 9L51 30 30 51 9 30z" fill="none" stroke="#B2B5BA" stroke-width="1.2"/><text x="30" y="40" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="30" font-weight="600" fill="#B2B5BA">T</text></svg><span class="nwt"><small>Designed &amp; built by</small><b>THE NEXTWEB</b><em>STUDIO</em></span></a><div class="fmeta"><a href="https://www.instagram.com/studiothenextweb/" target="_blank" rel="noopener">@studiothenextweb</a> &middot; &copy; 2026 &mdash; Made in South Africa<br><span>Upload only your own notes or material you have the right to share.</span></div></div>
+</div></footer>
+
+<div class="modal" id="pay" role="dialog" aria-modal="true" aria-labelledby="pT"><div class="card">
+  <h3 id="pT">You&rsquo;ve used your 5 free summaries</h3><p class="note" id="pD"></p>
+  <div class="row"><button class="btn" id="pGo"></button><button class="btn ghost" id="pX">Not now</button></div></div></div>
+<div class="notice" id="notice" role="region" aria-label="Storage notice" style="display:none"><span>StudySense keeps a little data in your browser (your session, saved work and theme) so it works. We don&rsquo;t use advertising trackers.</span><span><button class="lnk2" data-go="privacy">Read the policy</button> <button class="btn sm" id="noticeOk">Got it</button></span></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/files.js"></script>
+<script src="js/student.js"></script>
+<script src="js/teacher.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/config.js"></script>
+<script src="js/privacy.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
