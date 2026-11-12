@@ -56,7 +56,7 @@ function r_login(): void {
   if ((int)$recent['n'] >= 8) fail(429, 'Too many attempts. Please wait 15 minutes and try again.');
 
   $u = q1('SELECT * FROM users WHERE email = ?', [$email]);
-  // Always run password_verify so response time doesn't reveal whether the email exists.
+  
   $hash = $u['password_hash'] ?? '$2y$10$usesomesillystringforsaltuQ5v6Z8m1b5Yw0m3f8N0m8b3m6r9a6e';
   $ok = password_verify($pw, $hash) && $u && $u['password_hash'] !== null;
   if (!$ok) {
@@ -104,7 +104,7 @@ function r_logout(): void {
   json_out(['ok' => true]);
 }
 
-/* =========================== ME / POPIA =========================== */
+
 
 function r_me_get(): void { json_out(me_payload(user_row(uid()))); }
 
@@ -153,7 +153,7 @@ function r_export(): void {
 
 function r_delete_me(): void {
   $id = uid();
-  run('DELETE FROM users WHERE id = ?', [$id]);   // cascades to consents, modules, sessions, rows, articles, comments
+  run('DELETE FROM users WHERE id = ?', [$id]);   
   $_SESSION = [];
   session_destroy();
   json_out(['ok' => true]);
@@ -168,7 +168,7 @@ function r_privacy_request(): void {
   json_out(['ok' => true], 201);
 }
 
-/* =========================== USAGE / BILLING =========================== */
+
 
 function r_usage_get(): void {
   $u = user_row(uid());
@@ -179,7 +179,7 @@ function r_usage_consume(): void {
   $id = uid();
   $u = user_row($id);
   if ($u['subscribed']) json_out(['used' => (int)$u['free_used'], 'limit' => null, 'subscribed' => true]);
-  // Atomic: the WHERE clause stops two parallel requests from both slipping under the limit.
+  
   if (run('UPDATE users SET free_used = free_used + 1 WHERE id = ? AND free_used < ?', [$id, FREE_LIMIT]) === 0)
     fail(402, 'Free limit reached', ['used' => FREE_LIMIT, 'limit' => FREE_LIMIT]);
   json_out(['used' => (int)user_row($id)['free_used'], 'limit' => FREE_LIMIT, 'subscribed' => false]);
@@ -187,13 +187,13 @@ function r_usage_consume(): void {
 
 function r_subscribe(): void {
   $id = uid();
-  // TODO: replace with a PayFast checkout + ITN webhook that sets subscribed = 1 after real payment.
+  
   if (!cfg('dev_fake_subscribe', false)) fail(501, 'Payments are not switched on yet');
   run('UPDATE users SET subscribed = 1 WHERE id = ?', [$id]);
   json_out(me_payload(user_row($id)));
 }
 
-/* =========================== MODULES =========================== */
+
 
 function load_modules(int $uid, ?int $only = null): array {
   $mods = $only
@@ -276,7 +276,7 @@ function r_module_delete(int $mid): void {
 
 function r_session_create(int $mid): void {
   $id = uid();
-  if (!q1('SELECT id FROM modules WHERE id = ? AND user_id = ?', [$mid, $id])) fail(404, 'Module not found');   // ownership check
+  if (!q1('SELECT id FROM modules WHERE id = ? AND user_id = ?', [$mid, $id])) fail(404, 'Module not found');    
   $d = body();
   [$title, $qn, $rows] = clean_session($d);
   $pdo = db();
@@ -291,7 +291,7 @@ function r_session_create(int $mid): void {
   fail(500, 'Could not save');
 }
 
-/* =========================== ROOMS / ARTICLES =========================== */
+
 
 function articles_query(string $where, array $p, int $limit = 200): array {
   $arts = q("SELECT a.id, a.room_id, a.title, a.body, a.created_at, u.name AS author FROM articles a JOIN users u ON u.id = a.user_id $where ORDER BY a.id DESC LIMIT $limit", $p);
@@ -333,7 +333,7 @@ function r_comment_create(int $aid): void {
   json_out(['ok' => true], 201);
 }
 
-/* =========================== ROUTER =========================== */
+
 
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 if (!preg_match('#/v1(/.*)?$#', $path, $m)) fail(404, 'Not found');

@@ -1,12 +1,11 @@
--- StudySense database. Import with phpMyAdmin (or: mysql -u user -p dbname < schema.sql)
--- Create the database first in your host's panel, then select it before importing.
+
 SET NAMES utf8mb4;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(190) NOT NULL UNIQUE,
-  password_hash VARCHAR(255) NULL,                 -- NULL for Google-only accounts
+  password_hash VARCHAR(255) NULL,                 
   role ENUM('student','teacher') NULL,
   occupation VARCHAR(50) NOT NULL DEFAULT 'Student',
   field VARCHAR(50) NOT NULL DEFAULT 'History',
@@ -16,7 +15,7 @@ CREATE TABLE users (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE consents (                            -- POPIA consent record (history kept)
+CREATE TABLE consents (                            
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   policy_version VARCHAR(20) NOT NULL,
@@ -37,7 +36,7 @@ CREATE TABLE modules (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE sessions_marked (                     -- one marking session = one assessment
+CREATE TABLE sessions_marked (                    
   id INT AUTO_INCREMENT PRIMARY KEY,
   module_id INT NOT NULL,
   title VARCHAR(150) NOT NULL,
@@ -46,11 +45,11 @@ CREATE TABLE sessions_marked (                     -- one marking session = one 
   FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE session_rows (                        -- one row per student paper
+CREATE TABLE session_rows (                       
   id INT AUTO_INCREMENT PRIMARY KEY,
   session_id INT NOT NULL,
   student_name VARCHAR(120) NOT NULL,
-  scores JSON NOT NULL,                            -- e.g. [1,0.5,0,1,1]
+  scores JSON NOT NULL,                            
   FOREIGN KEY (session_id) REFERENCES sessions_marked(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -93,7 +92,7 @@ CREATE TABLE privacy_requests (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE login_attempts (                      -- simple brute-force throttle
+CREATE TABLE login_attempts (                      
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(190) NOT NULL,
   ip VARCHAR(45) NOT NULL,
@@ -101,8 +100,7 @@ CREATE TABLE login_attempts (                      -- simple brute-force throttl
   KEY idx_email_time (email, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Same rooms, in the same order, as the RM list in js/app.js (room id = list index + 1).
--- Member counts are demo numbers from the front end.
+
 INSERT INTO rooms (name, occupation, field, members) VALUES
  ('Grade 12 History Study Group','Student','History',128),
  ('Lecturers: History Teaching','Lecturer','History',41),

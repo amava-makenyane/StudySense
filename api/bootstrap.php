@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-const FREE_LIMIT = 5;      // free summaries/markings
-const FREE_MODULES = 3;    // free module slots
+const FREE_LIMIT = 5;      
+const FREE_MODULES = 3;    
 const OCCUPATIONS = ['Student', 'Teacher', 'Lecturer', 'Developer', 'Nurse', 'Accountant', 'Other'];
 const FIELDS = ['History', 'IT', 'Life Sciences', 'Commerce', 'Law', 'Mathematics'];
 
@@ -29,7 +29,7 @@ if (!is_file($configFile)) fail(500, 'Server is not configured. Copy config.exam
 $CONFIG = require $configFile;
 function cfg(string $k, $default = null) { global $CONFIG; return $CONFIG[$k] ?? $default; }
 
-/* ---- CORS + origin check ---- */
+
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $allowed = cfg('allowed_origins', []);
 $originOk = $origin !== '' && in_array($origin, $allowed, true);
@@ -43,10 +43,10 @@ if ($originOk) {
 }
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 if ($method === 'OPTIONS') { http_response_code(204); exit; }
-// Basic CSRF defence: browsers always send Origin on cross-site writes.
+
 if ($method !== 'GET' && $origin !== '' && !$originOk) fail(403, 'Origin not allowed');
 
-/* ---- Session cookie ---- */
+
 $secure = !cfg('dev', false);
 ini_set('session.gc_maxlifetime', (string)(60 * 60 * 24 * 30));
 session_name('ssid');
@@ -59,7 +59,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-/* ---- Database ---- */
+
 function db(): PDO {
   static $pdo = null;
   if ($pdo === null) {
@@ -77,7 +77,7 @@ function q(string $sql, array $p = []): array { $st = db()->prepare($sql); $st->
 function q1(string $sql, array $p = []): ?array { return q($sql, $p)[0] ?? null; }
 function run(string $sql, array $p = []): int { $st = db()->prepare($sql); $st->execute($p); return $st->rowCount(); }
 
-/* ---- Request helpers ---- */
+
 function body(): array {
   $raw = file_get_contents('php://input');
   if ($raw === false || $raw === '') return [];
@@ -95,7 +95,7 @@ function str($v, int $max, bool $required = false, string $field = 'Value'): str
 function iso(string $ts): string { return gmdate('Y-m-d\TH:i:s\Z', strtotime($ts . ' UTC')); }
 function client_ip(): string { return substr($_SERVER['REMOTE_ADDR'] ?? '', 0, 45); }
 
-/* ---- Auth helpers ---- */
+
 function uid(): int {
   if (empty($_SESSION['uid'])) fail(401, 'Please sign in');
   return (int)$_SESSION['uid'];
