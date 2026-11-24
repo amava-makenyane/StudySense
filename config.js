@@ -26,3 +26,23 @@ const REGULATOR = {
   phone: '010 023 5200',
   site: 'https://inforegulator.org.za'
 };
+
+/* Prices live in pricing.js (BASE_PRICES): South Africa R50 student and R80 lecturer, everyone else
+   US$10 student and US$15 lecturer, converted into their own currency. */
+
+/* ===== Payments (PayPal) =====
+   Fill in ONE of these. See PAYMENTS-SETUP.md for the steps.
+   clientId  : developer.paypal.com > Apps & Credentials > your app > Client ID.
+               Gives a PayPal button and a debit or credit card button, and unlocks the account automatically.
+   meUser    : your PayPal.Me name (create it at https://www.paypal.com/paypalme/my/profile).
+               Simple pay link. PayPal can't tell the website it was paid, so accounts stay "pending" until confirmed.
+   mode      : 'order' = one payment for one month. 'subscription' = automatic monthly billing (needs plan ids).
+   subscriptionPlans : { USD: { student: 'P-XXXX', teacher: 'P-YYYY' }, EUR: { ... } }  one plan per currency. */
+const PAYPAL = { clientId: '', meUser: '', mode: 'order', subscriptionPlans: {} };
+
+/* ===== Learn (school subjects) =====
+   reportEmail : where "Report a mistake" messages go.
+   reviewed    : topics a qualified teacher has checked, shown as a badge. Add an entry after each check, for example
+                 'm-percent': { by: 'Mrs Naidoo, Maths teacher', on: '2026-12-01' }
+   Topic ids are in learn-data.js. A topic with no entry shows "Awaiting teacher check". */
+const LEARN = { reportEmail: '[learn@yourdomain.co.za]', reviewed: {} };
